@@ -199,20 +199,20 @@ body.sidebar-open .sidebar-overlay { display: block; }
 </style>
 </head>
 <body>
-<button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="メニュー">
+<button class="sidebar-toggle" id="sidebar-toggle-btn" aria-label="メニュー">
   <span></span><span></span><span></span>
 </button>
-<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
 <div class="layout">
 <aside class="sidebar">
   <div class="sidebar-title">キマヤメ語</div>
   <nav>
-    <a class="nav-item active" href="#" onclick="showPage('cover',this)"><span class="ch">TOP</span>目次</a>
-    <a class="nav-item" href="#" onclick="showPage('p1',this)"><span class="ch">#1</span>文字と発音</a>
-    <a class="nav-item" href="#" onclick="showPage('p2',this)"><span class="ch">#2</span>述語・品詞・語順</a>
-    <a class="nav-item" href="#" onclick="showPage('p3',this)"><span class="ch">#3</span>教材：清掃</a>
-    <a class="nav-item" href="#" onclick="showPage('p4',this)"><span class="ch">#4</span>教材：食事</a>
-    <a class="nav-item" href="#" onclick="showPage('p5',this)"><span class="ch">帳</span>単語帳</a>
+    <a class="nav-item active" href="#" data-page="cover"><span class="ch">TOP</span>目次</a>
+    <a class="nav-item" href="#" data-page="p1"><span class="ch">#1</span>文字と発音</a>
+    <a class="nav-item" href="#" data-page="p2"><span class="ch">#2</span>述語・品詞・語順</a>
+    <a class="nav-item" href="#" data-page="p3"><span class="ch">#3</span>教材：清掃</a>
+    <a class="nav-item" href="#" data-page="p4"><span class="ch">#4</span>教材：食事</a>
+    <a class="nav-item" href="#" data-page="p5"><span class="ch">帳</span>単語帳</a>
   </nav>
 </aside>
 <main class="main">
@@ -247,11 +247,11 @@ body.sidebar-open .sidebar-overlay { display: block; }
 
   <div class="intro-toc-label">目次</div>
   <ul class="toc-list">
-    <li class="toc-item" onclick="showPage('p1',null)"><span class="toc-ch">#1</span><span class="toc-name">文字と発音</span></li>
-    <li class="toc-item" onclick="showPage('p2',null)"><span class="toc-ch">#2</span><span class="toc-name">述語・品詞・語順</span></li>
-    <li class="toc-item" onclick="showPage('p3',null)"><span class="toc-ch">#3</span><span class="toc-name">教材：お風呂の排水口清掃</span></li>
-    <li class="toc-item" onclick="showPage('p4',null)"><span class="toc-ch">#4</span><span class="toc-name">教材：食事の準備</span></li>
-    <li class="toc-item" onclick="showPage('p5',null)"><span class="toc-ch">帳</span><span class="toc-name">単語帳</span></li>
+    <li class="toc-item" data-page="p1"><span class="toc-ch">#1</span><span class="toc-name">文字と発音</span></li>
+    <li class="toc-item" data-page="p2"><span class="toc-ch">#2</span><span class="toc-name">述語・品詞・語順</span></li>
+    <li class="toc-item" data-page="p3"><span class="toc-ch">#3</span><span class="toc-name">教材：お風呂の排水口清掃</span></li>
+    <li class="toc-item" data-page="p4"><span class="toc-ch">#4</span><span class="toc-name">教材：食事の準備</span></li>
+    <li class="toc-item" data-page="p5"><span class="toc-ch">帳</span><span class="toc-name">単語帳</span></li>
   </ul>
 </section>
 
@@ -315,7 +315,7 @@ body.sidebar-open .sidebar-overlay { display: block; }
 
   <div class="nav-footer">
     <span></span>
-    <a class="nav-btn" href="#" onclick="showPage('p2',null)">#2 述語・品詞・語順 →</a>
+    <a class="nav-btn" href="#" data-page="p2">#2 述語・品詞・語順 →</a>
   </div>
 </section>
 
@@ -383,8 +383,8 @@ body.sidebar-open .sidebar-overlay { display: block; }
   </ul>
 
   <div class="nav-footer">
-    <a class="nav-btn" href="#" onclick="showPage('p1',null)">← #1 文字と発音</a>
-    <a class="nav-btn" href="#" onclick="showPage('p3',null)">#3 教材：清掃 →</a>
+    <a class="nav-btn" href="#" data-page="p1">← #1 文字と発音</a>
+    <a class="nav-btn" href="#" data-page="p3">#3 教材：清掃 →</a>
   </div>
 </section>
 
@@ -431,8 +431,8 @@ body.sidebar-open .sidebar-overlay { display: block; }
   </div>
 
   <div class="nav-footer">
-    <a class="nav-btn" href="#" onclick="showPage('p2',null)">← #2 述語・品詞・語順</a>
-    <a class="nav-btn" href="#" onclick="showPage('p4',null)">#4 教材：食事 →</a>
+    <a class="nav-btn" href="#" data-page="p2">← #2 述語・品詞・語順</a>
+    <a class="nav-btn" href="#" data-page="p4">#4 教材：食事 →</a>
   </div>
 </section>
 
@@ -499,8 +499,8 @@ body.sidebar-open .sidebar-overlay { display: block; }
   </div>
 
   <div class="nav-footer">
-    <a class="nav-btn" href="#" onclick="showPage('p3',null)">← #3 教材：清掃</a>
-    <a class="nav-btn" href="#" onclick="showPage('p5',null)">単語帳 →</a>
+    <a class="nav-btn" href="#" data-page="p3">← #3 教材：清掃</a>
+    <a class="nav-btn" href="#" data-page="p5">単語帳 →</a>
   </div>
 </section>
 
@@ -607,8 +607,8 @@ body.sidebar-open .sidebar-overlay { display: block; }
   </div>
   <p class="dim" id="wb-count">89語</p>
   <div class="nav-footer">
-    <a class="nav-btn" href="#" onclick="showPage('p4',null)">← #4 教材：食事</a>
-    <a class="nav-btn" href="#" onclick="showPage('cover',null)">↑ 目次</a>
+    <a class="nav-btn" href="#" data-page="p4">← #4 教材：食事</a>
+    <a class="nav-btn" href="#" data-page="cover">↑ 目次</a>
   </div>
 </section>
 
@@ -654,17 +654,28 @@ const CHARS = [
   {n:"Re",c:"b-r",s:"R系",k:"記号",g:"借用語、外来語、異文化"},
 ];
 
-function showPage(id, linkEl) {
+function showPage(id) {
   if (window.innerWidth <= 768) { document.body.classList.remove('sidebar-open'); }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   const map = {cover:0,p1:1,p2:2,p3:3,p4:4,p5:5};
-  if (linkEl) linkEl.classList.add('active');
-  else document.querySelectorAll('.nav-item')[map[id]]?.classList.add('active');
+  const idx = map[id];
+  if (idx !== undefined) {
+    const navItems = document.querySelectorAll('.nav-item');
+    if (navItems[idx]) navItems[idx].classList.add('active');
+  }
   window.scrollTo(0,0);
-  return false;
 }
+
+// イベントデリゲーションで data-page を処理
+document.addEventListener('click', function(e) {
+  const el = e.target.closest('[data-page]');
+  if (!el) return;
+  e.preventDefault();
+  showPage(el.dataset.page);
+});
 
 // Build char table
 const tbody = document.getElementById('char-tbody');
@@ -750,6 +761,12 @@ wbBuildFilters();
 function toggleSidebar() {
   document.body.classList.toggle('sidebar-open');
 }
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('sidebar-toggle-btn');
+  const overlay = document.getElementById('sidebar-overlay');
+  if (btn) btn.addEventListener('click', toggleSidebar);
+  if (overlay) overlay.addEventListener('click', toggleSidebar);
+});
 
 
 </script>
