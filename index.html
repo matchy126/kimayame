@@ -655,6 +655,7 @@ const CHARS = [
 ];
 
 function showPage(id, linkEl) {
+  if (window.innerWidth <= 768) { document.body.classList.remove('sidebar-open'); }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -749,14 +750,7 @@ wbBuildFilters();
 function toggleSidebar() {
   document.body.classList.toggle('sidebar-open');
 }
-// ページ遷移時にモバイルではサイドバーを閉じる
-const _origShowPage = showPage;
-function showPage(id, linkEl) {
-  if (window.innerWidth <= 768) {
-    document.body.classList.remove('sidebar-open');
-  }
-  return _origShowPage(id, linkEl);
-}
+
 
 </script>
 </body>
