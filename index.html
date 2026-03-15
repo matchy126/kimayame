@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>キマヤメ語 — 文法リファレンス</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF8;--surface:#F3F2EE;--surface2:#ECEAE4;
+  --border:rgba(55,53,47,0.12);--border2:rgba(55,53,47,0.22);
+  --text:#2C2C2A;--text2:#5F5E5A;--text3:#888780;
+  --accent:#1D9E75;--accent-bg:#E1F5EE;
+  --mono:"SF Mono","Fira Code","Consolas",monospace;
+}
+@media(prefers-color-scheme:dark){
+  :root{--bg:#1A1A18;--surface:#232320;--surface2:#2C2C29;
+    --border:rgba(255,255,255,0.10);--border2:rgba(255,255,255,0.20);
+    --text:#E8E6DF;--text2:#B4B2A9;--text3:#6B6965;
+    --accent:#5DCAA5;--accent-bg:#04342C;}
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.75;min-height:100vh}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:220px;flex-shrink:0;position:fixed;top:0;left:0;bottom:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:2rem 0 1.5rem;overflow-y:auto;z-index:100}
+.sidebar-title{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);padding:0 1.25rem 1rem}
+.sidebar nav{flex:1}
+.nav-item{display:block;padding:0.45rem 1.25rem;font-size:13px;color:var(--text2);text-decoration:none;border-left:2px solid transparent;transition:color 0.15s,border-color 0.15s,background 0.15s}
+.nav-item:hover{color:var(--text);background:var(--surface2)}
+.nav-item.active{color:var(--accent);border-left-color:var(--accent);background:var(--accent-bg);font-weight:500}
+.nav-item .ch{font-size:11px;color:var(--text3);display:block;margin-bottom:1px}
+.main{margin-left:220px;flex:1;min-width:0;overflow-x:hidden}
+.page{max-width:760px;margin:0 auto;padding:3.5rem 2.5rem 5rem;display:none}
+.page.active{display:block}
+.chapter-label{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-bottom:0.5rem}
+.page-title{font-size:2rem;font-weight:600;color:var(--text);border-bottom:1.5px solid var(--border);padding-bottom:0.9rem;margin-bottom:2.25rem}
+h2.sh{font-size:16px;font-weight:600;color:var(--text);margin:2.25rem 0 0.9rem;padding-left:0.75rem;border-left:3px solid var(--accent)}
+.prose{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:1rem}
+.rules{list-style:none;display:flex;flex-direction:column;gap:0.55rem;margin-bottom:1.25rem}
+.rules li{display:flex;align-items:flex-start;gap:0.75rem;font-size:14px;color:var(--text);line-height:1.7;padding:2px 4px;border-radius:4px}
+.rnum{min-width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:3px;flex-shrink:0}
+.tbl-wrap{border:1px solid var(--border);border-radius:10px;overflow-x:auto;overflow-y:hidden;margin-bottom:1.5rem}
+table.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl thead tr{background:var(--surface2);border-bottom:1px solid var(--border2)}
+.tbl th{padding:9px 14px;text-align:left;font-weight:600;font-size:11px;color:var(--text3);letter-spacing:0.05em;text-transform:uppercase}
+.tbl td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle;line-height:1.5}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:nth-child(even) td{background:var(--surface)}
+.badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:12px;font-weight:600;padding:3px 9px;border-radius:5px;white-space:nowrap}
+.b-m{background:#EEEDFE;color:#3C3489}.b-k{background:#EAF3DE;color:#27500A}
+.b-s{background:#FAEEDA;color:#633806}.b-t{background:#FAECE7;color:#4A1B0C}
+.b-n{background:#E1F5EE;color:#04342C}.b-h{background:#E6F1FB;color:#042C53}
+.b-y{background:#FBEAF0;color:#4B1528}.b-p{background:#FCEBEB;color:#501313}
+.b-r{background:#F1EFE8;color:#2C2C2A}.b-gray{background:#F1EFE8;color:#2C2C2A}
+.b-green{background:#EAF3DE;color:#27500A}.b-blue{background:#E6F1FB;color:#042C53}
+.b-amber{background:#FAEEDA;color:#633806}.b-coral{background:#FAECE7;color:#4A1B0C}
+.b-pink{background:#FBEAF0;color:#4B1528}
+@media(prefers-color-scheme:dark){
+  .b-m{background:#26215C;color:#CECBF6}.b-k{background:#173404;color:#C0DD97}
+  .b-s{background:#412402;color:#FAC775}.b-t{background:#4A1B0C;color:#F5C4B3}
+  .b-n{background:#04342C;color:#9FE1CB}.b-h{background:#042C53;color:#B5D4F4}
+  .b-y{background:#4B1528;color:#F4C0D1}.b-p{background:#501313;color:#F7C1C1}
+  .b-r{background:#2C2C2A;color:#D3D1C7}.b-gray{background:#2C2C2A;color:#D3D1C7}
+  .b-green{background:#173404;color:#C0DD97}.b-blue{background:#042C53;color:#B5D4F4}
+  .b-amber{background:#412402;color:#FAC775}.b-coral{background:#4A1B0C;color:#F5C4B3}
+  .b-pink{background:#4B1528;color:#F4C0D1}
+}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0.5rem;align-items:center}
+.chip-label{font-size:12px;color:var(--text3);min-width:42px}
+.chip{font-family:var(--mono);font-size:13px;font-weight:500;padding:3px 10px;border-radius:6px;background:var(--surface2);border:1px solid var(--border2);color:var(--text)}
+.chip.vowel{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
+.formula{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:0.9rem 1.25rem;margin-bottom:0.75rem;font-size:13px}
+.formula .flabel{color:var(--text3);min-width:72px;font-size:12px}
+.fpart{font-family:var(--mono);font-size:13px;font-weight:500;padding:3px 10px;border-radius:5px;background:var(--bg);border:1px solid var(--border2);color:var(--text)}
+.fop{color:var(--text3);font-size:14px}
+.fresult{font-family:var(--mono);font-size:14px;font-weight:700;padding:3px 12px;border-radius:6px;background:var(--surface2);border:1px solid var(--border2);color:var(--text)}
+.note{font-size:13px;color:var(--text2);line-height:1.7;padding:0.75rem 1rem;border-left:2.5px solid var(--border2);background:var(--surface);border-radius:0 8px 8px 0;margin-bottom:1rem}
+.dim{color:var(--text3);font-size:12px}
+.char-name{font-family:var(--mono);font-weight:600;font-size:14px}
+.nav-footer{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:6px 14px;background:transparent;cursor:pointer;text-decoration:none;transition:background 0.15s}
+.nav-btn:hover{background:var(--accent-bg)}
+/* cover */
+.cover-title{font-size:2.5rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+.cover-sub{font-size:15px;color:var(--text2);margin-bottom:2.5rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.toc-item{display:flex;align-items:center;gap:12px;padding:0.65rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface);cursor:pointer;transition:background 0.15s,border-color 0.15s;text-decoration:none;color:var(--text)}
+.toc-item:hover{background:var(--surface2);border-color:var(--border2)}
+.toc-ch{font-size:11px;color:var(--text3);min-width:28px;font-weight:600}
+.toc-name{font-size:14px;font-weight:500}
+/* intro */
+.intro-section{margin-bottom:2rem}
+.intro-block{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem}
+.intro-block-title{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.6rem}
+.intro-text{font-size:14px;color:var(--text);line-height:1.8}
+.intro-cols{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+@media(max-width:540px){.intro-cols{grid-template-columns:1fr}}
+.intro-card{border-radius:10px;border:1px solid var(--border);padding:0.9rem 1rem}
+.intro-card-pro{border-color:#9FE1CB;background:#E1F5EE}
+.intro-card-con{border-color:#FAC775;background:#FAEEDA}
+@media(prefers-color-scheme:dark){
+  .intro-card-pro{border-color:#0F6E56;background:#04342C}
+  .intro-card-con{border-color:#854F0B;background:#412402}
+}
+.intro-card-head{display:flex;align-items:center;gap:6px;margin-bottom:0.65rem}
+.intro-card-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.intro-card-pro .intro-card-icon{background:#1D9E75;color:#fff}
+.intro-card-con .intro-card-icon{background:#BA7517;color:#fff}
+.intro-card-label{font-size:12px;font-weight:600;letter-spacing:0.06em}
+.intro-card-pro .intro-card-label{color:#0F6E56}
+.intro-card-con .intro-card-label{color:#854F0B}
+@media(prefers-color-scheme:dark){
+  .intro-card-pro .intro-card-label{color:#9FE1CB}
+  .intro-card-con .intro-card-label{color:#FAC775}
+}
+.intro-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0}
+.intro-list li{font-size:13px;line-height:1.6;color:var(--text);display:flex;gap:7px;align-items:flex-start;padding:2px 4px;border-radius:4px}
+.intro-list li::before{content:"·";font-size:16px;line-height:1.4;flex-shrink:0;color:var(--text3)}
+.intro-stats{display:flex;flex-wrap:wrap;gap:0.75rem}
+.stat-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:0.6rem 1rem;min-width:100px;flex:1}
+.stat-val{font-size:22px;font-weight:600;color:var(--text);line-height:1.2;font-family:var(--mono)}
+.stat-lbl{font-size:11px;color:var(--text3);margin-top:2px}
+.intro-toc-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.5rem}
+/* moji image */
+.moji-img{display:block;width:340px;max-width:100%;image-rendering:pixelated;border:1px solid var(--border2);border-radius:8px;background:#fff;padding:10px}
+.moji-wrap{margin-bottom:1.5rem;overflow-x:auto}
+.moji-col-labels{display:grid;grid-template-columns:105px 105px 105px 35px;width:350px;margin-bottom:3px}
+.moji-col-labels span{font-size:10px;color:var(--text3);text-align:center;line-height:1.35;padding:0 2px}
+.moji-row{display:flex;align-items:flex-start;gap:10px}
+.moji-vowel-col{display:flex;flex-direction:column;justify-content:space-around;padding-top:10px}
+.moji-vowel-col span{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--accent);line-height:1;height:calc((340px - 20px) / 5);display:flex;align-items:center}
+/* wordbook */
+.wb-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.wb-filter-btn{font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid var(--border2);background:var(--surface);color:var(--text2);cursor:pointer;transition:all 0.12s}
+.wb-filter-btn:hover{border-color:var(--accent);color:var(--accent)}
+.wb-filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:500}
+#wb-table tbody tr.hidden{display:none}
+/* lesson grid */
+.lesson-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.25rem;margin-bottom:1.5rem}
+.lesson-col{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem}
+.lesson-col-label{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:0.6rem}
+.lesson-col p{font-size:13px;color:var(--text);line-height:2.2}
+.lesson-col .km{font-family:var(--mono)}
+@media print{
+  .sidebar{display:none}
+  .main{margin-left:0}
+  .page{display:block!important;page-break-before:always}
+  .page:first-child{page-break-before:avoid}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-title">キマヤメ語</div>
+  <nav>
+    <a class="nav-item active" href="#" onclick="showPage('cover',this)"><span class="ch">TOP</span>目次</a>
+    <a class="nav-item" href="#" onclick="showPage('p1',this)"><span class="ch">#1</span>文字と発音</a>
+    <a class="nav-item" href="#" onclick="showPage('p2',this)"><span class="ch">#2</span>述語・品詞・語順</a>
+    <a class="nav-item" href="#" onclick="showPage('p3',this)"><span class="ch">#3</span>教材：清掃</a>
+    <a class="nav-item" href="#" onclick="showPage('p4',this)"><span class="ch">#4</span>教材：食事</a>
+    <a class="nav-item" href="#" onclick="showPage('p5',this)"><span class="ch">帳</span>単語帳</a>
+  </nav>
+</aside>
+<main class="main">
+
+<!-- COVER -->
+<section class="page active" id="cover">
+  <br>
+  <div class="chapter-label">文法リファレンス</div>
+  <div class="cover-title">キマヤメ語</div>
+  <div class="cover-sub">表語文字による人工言語「キマヤメ語（Kimayame）」の文法リファレンス。Kimayameは「喋ること」を意味する。</div>
+
+  <div class="intro-section">
+    <div class="intro-block">
+      <div class="intro-block-title">キマヤメ語とは</div>
+      <p class="intro-text">キマヤメ語（Kimayame）は表語文字を基盤とした人工言語で、その名自体が「喋ること」を意味する。子音35字・母音5字の計40文字それぞれが視覚的意味と概念的意味の二層を持ち、文字を組み合わせることで語彙を構成する。文字体系・文法のすべてが一貫した原理で設計されており、少ない基礎知識から体系全体を演繹できるよう意図されている。</p>
+    </div>
+    <div class="intro-cols">
+      <div class="intro-card intro-card-pro">
+        <div class="intro-card-head"><span class="intro-card-icon">＋</span><span class="intro-card-label">利点</span></div>
+        <ul class="intro-list" id="pros-list"></ul>
+      </div>
+      <div class="intro-card intro-card-con">
+        <div class="intro-card-head"><span class="intro-card-icon">－</span><span class="intro-card-label">欠点・課題</span></div>
+        <ul class="intro-list" id="cons-list"></ul>
+      </div>
+    </div>
+    <div class="intro-block" style="margin-top:1.25rem;">
+      <div class="intro-block-title">基本統計</div>
+      <div class="intro-stats" id="stats-row"></div>
+    </div>
+  </div>
+
+  <div class="intro-toc-label">目次</div>
+  <ul class="toc-list">
+    <li class="toc-item" onclick="showPage('p1',null)"><span class="toc-ch">#1</span><span class="toc-name">文字と発音</span></li>
+    <li class="toc-item" onclick="showPage('p2',null)"><span class="toc-ch">#2</span><span class="toc-name">述語・品詞・語順</span></li>
+    <li class="toc-item" onclick="showPage('p3',null)"><span class="toc-ch">#3</span><span class="toc-name">教材：お風呂の排水口清掃</span></li>
+    <li class="toc-item" onclick="showPage('p4',null)"><span class="toc-ch">#4</span><span class="toc-name">教材：食事の準備</span></li>
+    <li class="toc-item" onclick="showPage('p5',null)"><span class="toc-ch">帳</span><span class="toc-name">単語帳</span></li>
+  </ul>
+</section>
+
+<!-- #1 文字と発音 -->
+<section class="page" id="p1">
+  <div class="chapter-label">#1</div>
+  <div class="page-title">文字と発音</div>
+
+  <h2 class="sh">文字体系</h2>
+  <p class="prose">キマヤメ語は子音35字・母音5字の計40文字を使います。これらは漢字などと同じ表語文字です。ローマ字転写の場合、「Wa」は「W」と省略します。</p>
+  <div style="margin-bottom:1.25rem;">
+    <div class="chips">
+      <span class="chip-label">子音</span>
+      <span class="chip" title="aiueo">m</span><span class="chip" title="aiueo">k</span><span class="chip" title="aieo">s</span><span class="chip" title="aieo">t</span><span class="chip" title="aieo">n</span><span class="chip" title="aieo">h</span><span class="chip" title="auo">y</span><span class="chip" title="aueo">p</span><span class="chip" title="ae">r</span><span class="chip" title="aiueo">w</span>
+    </div>
+    <div class="chips">
+      <span class="chip-label">母音</span>
+      <span class="chip vowel">a</span><span class="chip vowel">i</span><span class="chip vowel">u</span><span class="chip vowel">e</span><span class="chip vowel">o</span>
+    </div>
+    <div class="chips" style="margin-top:4px;">
+      <span class="chip-label" style="font-size:11px;color:var(--text3);">母音パターン</span>
+      <span style="font-size:12px;color:var(--text3);line-height:1.8;">M・K・W系＝aiueo　S・T・N・H系＝aieo　P系＝aueo　Y系＝auo　R系＝ae</span>
+    </div>
+  </div>
+
+  <h2 class="sh">文字一覧表</h2>
+  <p class="prose">子音（列）×母音（行）の組み合わせで40文字を構成する。縦線で区切られた4グループは、母音によって形の回転方向が異なることを示す。</p>
+  <div class="moji-wrap">
+    <div class="moji-col-labels">
+      <span>M · K 系<br>（aiueo）</span>
+      <span>S · T · N · H 系<br>（aieo）</span>
+      <span>Y · P · R 系<br>（auo / aueo / ae）</span>
+      <span>W 系<br>（aiueo）</span>
+    </div>
+    <div class="moji-row">
+      <img src="data:image/png;base64,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" alt="文字一覧表" class="moji-img">
+      <div class="moji-vowel-col">
+        <span>a</span><span>i</span><span>u</span><span>e</span><span>o</span>
+      </div>
+    </div>
+    <p class="dim" style="margin-top:0.5rem;">縦軸：母音（a i u e o）　横軸：子音　縦線：回転方向グループの区切り</p>
+  </div>
+
+  <h2 class="sh">文字の配置規則</h2>
+  <ul class="rules">
+    <li><span class="rnum">1</span><span>文字は最大2文字まで縦に配置できる。</span></li>
+    <li><span class="rnum">2</span><span>文字は繋げたり離したりすることができ、発音は変化しない。</span></li>
+    <li><span class="rnum">3</span><span>「W」を先頭に置くことで文字が左右反転する。視覚的意味も変化する。</span></li>
+    <li><span class="rnum">4</span><span>長音化によって重ね字や囲い字を表現する。</span></li>
+  </ul>
+
+  <h2 class="sh">文字の意味</h2>
+  <p class="prose">文字の形状に依存する視覚的意味と、そこから発展した概念的意味がある。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>文字</th><th>系列</th><th>視覚的意味</th><th>概念的意味</th></tr></thead>
+      <tbody id="char-tbody"></tbody>
+    </table>
+  </div>
+  <p class="dim" style="margin-bottom:2rem;">※ Ha/Hi/Hu/He/Ho は有声音 Ba/Bi/Bu/Be/Bo を含む。各系列の母音パターン：M・K・W系＝aiueo、S・T・N・H系＝aieo、P系＝aueo、Y系＝auo、R系＝ae。</p>
+
+  <div class="nav-footer">
+    <span></span>
+    <a class="nav-btn" href="#" onclick="showPage('p2',null)">#2 述語・品詞・語順 →</a>
+  </div>
+</section>
+
+<!-- #2 述語・品詞・語順 -->
+<section class="page" id="p2">
+  <div class="chapter-label">#2</div>
+  <div class="page-title">述語・品詞・語順</div>
+
+  <h2 class="sh">動詞の活用</h2>
+  <p class="prose">動詞は語尾に「Y」を置く。時制・態によって Y の直前要素または Y の母音が変化する。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>活用形</th><th>語尾</th><th>構造</th></tr></thead>
+      <tbody>
+        <tr><td>現在形</td><td><span class="badge b-green">Ya</span></td><td class="dim">語根 + Ya</td></tr>
+        <tr><td>未来形</td><td><span class="badge b-blue">Yu</span></td><td class="dim">語根 + Yu</td></tr>
+        <tr><td>過去形</td><td><span class="badge b-amber">Yo</span></td><td class="dim">語根 + Yo</td></tr>
+        <tr><td>受け身</td><td><span class="badge b-m">W + Y（時制）</span></td><td class="dim">語根 + W + Ya / Yu / Yo</td></tr>
+        <tr><td>進行形</td><td><span class="badge b-n">Ne + Y（時制）</span></td><td class="dim">語根 + Ne + Ya / Yu / Yo</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="dim" style="margin-bottom:0.5rem;">組み合わせ例</p>
+  <div class="formula"><span class="flabel">受け身現在</span><span class="fpart">語根</span><span class="fop">+</span><span class="fpart">W</span><span class="fop">+</span><span class="fpart">Ya</span><span class="fop">=</span><span class="fresult">語根·W·Ya</span></div>
+  <div class="formula"><span class="flabel">進行過去</span><span class="fpart">語根</span><span class="fop">+</span><span class="fpart">Ne</span><span class="fop">+</span><span class="fpart">Yo</span><span class="fop">=</span><span class="fresult">語根·Ne·Yo</span></div>
+
+  <h2 class="sh">形容詞の活用</h2>
+  <p class="prose">形容詞は語尾に「Pa」を置く。時制は単語の前に補語として添える。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>用法</th><th>形式</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td>形容詞語尾</td><td><span class="badge b-coral">Pa</span></td><td class="dim">語根の後ろに付加</td></tr>
+        <tr><td>現在時制（補語）</td><td><span class="badge b-green">YSe</span></td><td class="dim">形容詞の前に置く</td></tr>
+        <tr><td>未来時制（補語）</td><td><span class="badge b-blue">WSe</span></td><td class="dim">形容詞の前に置く</td></tr>
+        <tr><td>過去時制（補語）</td><td><span class="badge b-n">NeSe</span></td><td class="dim">形容詞の前に置く</td></tr>
+        <tr><td>比較級（補語）</td><td><span class="badge b-gray">〜Se</span></td><td class="dim">比較対象を Se で格変化させ、形容詞の前に置く</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">動詞の時制は語尾 Y の母音（a / u / o）で直接示すのに対して、形容詞の時制は補語「YSe / WSe / NeSe」を前置することで示す点が異なる。</div>
+
+  <h2 class="sh">品詞確定</h2>
+  <p class="prose">最後の音で品詞が確定する。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>構成</th><th>品詞</th><th>語末の音</th></tr></thead>
+      <tbody>
+        <tr><td>述語</td><td>動詞</td><td><span class="badge b-pink">Y</span></td></tr>
+        <tr><td></td><td>形容詞</td><td><span class="badge b-coral">Pa</span></td></tr>
+        <tr><td>主語</td><td>名詞（主語）</td><td><span class="badge b-green">i</span></td></tr>
+        <tr><td>目的語</td><td>名詞（目的語）</td><td><span class="badge b-amber">a</span></td></tr>
+        <tr><td>補語</td><td>修飾詞</td><td><span class="badge b-n">e</span></td></tr>
+        <tr><td></td><td>接続詞</td><td><span class="badge b-blue">Te</span></td></tr>
+        <tr><td>その他</td><td>名詞（固有）</td><td><span class="badge b-gray">o, u</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh">語順</h2>
+  <ul class="rules">
+    <li><span class="rnum">1</span><span>基本的に強調したい順番に置く。</span></li>
+    <li><span class="rnum">2</span><span>補語は修飾する単語の直前に置く。</span></li>
+    <li><span class="rnum">3</span><span>複数の修飾は強調したい順番に並べ造語する。「Se」や「Te」などの品詞確定は最後に置いたもの以外省略する。</span></li>
+  </ul>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="#" onclick="showPage('p1',null)">← #1 文字と発音</a>
+    <a class="nav-btn" href="#" onclick="showPage('p3',null)">#3 教材：清掃 →</a>
+  </div>
+</section>
+
+<!-- #3 教材：清掃 -->
+<section class="page" id="p3">
+  <div class="chapter-label">#3</div>
+  <div class="page-title">教材：お風呂の排水口清掃</div>
+  <p class="prose">実用的な掲示文を通じてキマヤメ語の語彙・文構造を学ぶ教材。左がキマヤメ語テキスト、右が日本語対訳。</p>
+
+  <h2 class="sh">文字テキスト</h2>
+  <p class="prose">以下はキマヤメ語で書かれた実際の掲示文（お風呂の排水口清掃）。</p>
+  <div style="margin-bottom:1.5rem;">
+    <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAFMAVwDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAcICf/EADAQAAEBBAgDCAMBAAAAAAAAAAATERIUFQIHCBYXISZBRWFjCRhHZ4WlxOQ4YmaT/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANlgAAARmzLXpjTeDS0ik0NxCJWWV6dB1iXNr2zMwswAAAjNpqvTBa7+lp7OYniEMiil06bzVeTHd25LMtemNN4NLSKTQ3EIlZZXp0HWJc2vbMzCzAjNpqvTBa7+lp7OYniEMiil06bzVeTHd25WYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYz7MvxB9N+UbMMZ9mX4g+m/KA2YCM2Za9MabwaWkUmhuIRKyyvToOsS5te2ZnZgMZ9mX4g+m/KLNaar0wWu/paezmJ4hDIopdOm81Xkx3duUZ/C7+7vj6bCQf+yj8V+rHN25WazLXpjTeDS0ik0NxCJWWV6dB1iXNr2zMwjPfn8rvf/rkZsy16YLXg0tPZzDcQhkUVenTearyY7u3LpkRm01Xpgtd/S09nMTxCGRRS6dN5qvJju7cgWmq9MFrv6Wns5ieIQyKKXTpvNV5Md3blZjmbaar0xpu/paRSaJ4hErLJdOg6xLm17ZmfTIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARmzLXpjTeDS0ik0NxCJWWV6dB1iXNr2zMwswBGbMtemNN4NLSKTQ3EIlZZXp0HWJc2vbMzCzAAACM2mq9MFrv6Wns5ieIQyKKXTpvNV5Md3blGe/P5Xe/wD1wNmAAAAAAAAAAAAAAAAAAARm01UXjTd/VMik0Tw+JWWS6lB1iXNr2zM7MYz7TTw+9S+KA7jHmj7B9gdmX4g+m/KHcY80fYPsFmsy1F4LXg1TPZzDcPhkUVepTearyY7u3ILMAAMZ9mX4g+m/KH4Xf3d8fTYSD/2Ufiv1Y5u3J2ZfiD6b8os1pqvTBa7+lp7OYniEMiil06bzVeTHd25AtNV6YLXf0tPZzE8QhkUUunTearyY7u3JZlqLwWvBqmezmG4fDIoq9Sm81Xkx3duUZ/C7+7vj6bCQf+yj8V+rHN25bMAxn2ZfiD6b8o2YYz7MvxB9N+UbMAAxn+F393fH02Eg/wDZR+K/Vjm7ctmAARm01Xpgtd/S09nMTxCGRRS6dN5qvJju7csZ2mq9Mabv6WkUmieIRKyyXToOsS5te2ZmGzLMtemNN4NLSKTQ3EIlZZXp0HWJc2vbMzjPaaeH3qXxR+aP8Jc71KLjP8U3IX9mv7Mzdpp4fepfFA2YRm01Xpgtd/S09nMTxCGRRS6dN5qvJju7coz+aP8ACXO9Si4z/FNyF/Zr+zM3aaeH3qXxQH4Xf3d8fTYSD/2Ufiv1Y5u3LZhGbMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyWmq9MFrv6Wns5ieIQyKKXTpvNV5Md3bkFmMZ/hd/d3x9NhIP/ZR+K/Vjm7ctmADGffn8rvf/AK5ZrMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyWmq9MFrv6Wns5ieIQyKKXTpvNV5Md3blZgBjPsy/EH035Rswxn2ZfiD6b8oB2ZfiD6b8o2YYz/C7+7vj6bCQf+yj8V+rHN25O/P5Xe//AFwHZl+IPpvyh2ZfiD6b8os1mWovBa8GqZ7OYbh8Miir1KbzVeTHd25Rnsy/EH035QGzARmzLUXgteDVM9nMNw+GRRV6lN5qvJju7crMAMZ/mj/CXO9Si4z/ABTchf2a/szPZhGbTVReNN39UyKTRPD4lZZLqUHWJc2vbMzCzHM2zLUXjTeDVMik0Nw+JWWV6lB1iXNr2zM9mWZa9MabwaWkUmhuIRKyyvToOsS5te2ZnGezL8QfTflAO4x5o+wfYHZl+IPpvyjZhjPsy/EH035QFmtNV6YLXf0tPZzE8QhkUUunTearyY7u3KM9mX4g+m/KLNZlqLwWvBqmezmG4fDIoq9Sm81Xkx3duUZ7MvxB9N+UBswAACM2mqi8abv6pkUmieHxKyyXUoOsS5te2ZnZgBjPuMeaPsH2CzWZai8Frwapns5huHwyKKvUpvNV5Md3blZgBGbMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyswAEZsy1F4LXg1TPZzDcPhkUVepTearyY7u3JZlqLwWvBqmezmG4fDIoq9Sm81Xkx3duVmAAjNmWovBa8GqZ7OYbh8Miir1KbzVeTHd25WYARmzLUXgteDVM9nMNw+GRRV6lN5qvJju7crMAAAAAAACM2mqi8abv6pkUmieHxKyyXUoOsS5te2ZnZgAIzaaqLxpu/qmRSaJ4fErLJdSg6xLm17ZmdmAA5m2mqi8Frv6pns5ieHwyKKXUpvNV5Md3bl0yAEZsy1F4LXg1TPZzDcPhkUVepTearyY7u3KM/hd/d3x9NhIP8A2Ufiv1Y5u3LZgAjNmWovBa8GqZ7OYbh8Miir1KbzVeTHd25LMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyswAHM2zLXpgteDS09nMNxCGRRV6dN5qvJju7cumQAxn35/K73/wCuO/P5Xe//AFzZgAEZsy1F4LXg1TPZzDcPhkUVepTearyY7u3KzACM2mq9MFrv6Wns5ieIQyKKXTpvNV5Md3bksy1F4LXg1TPZzDcPhkUVepTearyY7u3KzAARm01UXjTd/VMik0Tw+JWWS6lB1iXNr2zM7MABjPuMeaPsH2DZgAxn3GPNH2D7BZrMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyswAEZsy1F4LXg1TPZzDcPhkUVepTearyY7u3KzAAAAABGbTVemC139LT2cxPEIZFFLp03mq8mO7tyCzAxn35/K73/65ZrMtemNN4NLSKTQ3EIlZZXp0HWJc2vbMzCzAAACM2mq9MFrv6Wns5ieIQyKKXTpvNV5Md3blZgMZ9+fyu9/+uO/P5Xe/wD1x2ZfiD6b8o2YBGbMtemNN4NLSKTQ3EIlZZXp0HWJc2vbMzsxjPsy/EH035Q78/ld7/8AXA2YAAAAAAAAAAAAAAEZtNV6YLXf0tPZzE8QhkUUunTearyY7u3ILMAAAAAAjNmWvTGm8GlpFJobiESssr06DrEubXtmZ2YAARm01Xpgtd/S09nMTxCGRRS6dN5qvJju7cgswIzZlr0xpvBpaRSaG4hErLK9Og6xLm17ZmdmAAAAAAAIzaar0wWu/paezmJ4hDIopdOm81Xkx3duVmAAEZtNV6YLXf0tPZzE8QhkUUunTearyY7u3ILMAABGbTVemC139LT2cxPEIZFFLp03mq8mO7tysxGbTVemC139LT2cxPEIZFFLp03mq8mO7tyCM9+fyu9/+uOzL8QfTflDvz+V3v8A9cdmX4g+m/KA2YCM2Za9MabwaWkUmhuIRKyyvToOsS5te2ZnZgMZ/hd/d3x9NhIP/ZR+K/Vjm7ctmEZtNV6YLXf0tPZzE8QhkUUunTearyY7u3JZlqLwWvBqmezmG4fDIoq9Sm81Xkx3duQYzsy16YLXg0tPZzDcQhkUVenTearyY7u3Kzd+fyu9/wDrmzCM2Za9MabwaWkUmhuIRKyyvToOsS5te2ZmEZ7MvxB9N+UbMBjPvz+V3v8A9cB2ZfiD6b8o2YRmzLUXgteDVM9nMNw+GRRV6lN5qvJju7crMAAAAxn+F393fH02Eg/9lH4r9WObtydxjzR9g+wO4x5o+wfYA2YCM2Zai8Frwapns5huHwyKKvUpvNV5Md3bksy16Y03g0tIpNDcQiVllenQdYlza9szMLMYz/NH+Eud6lFxn+KbkL+zX9mZu4x5o+wfYHcY80fYPsAWazLXpjTeDS0ik0NxCJWWV6dB1iXNr2zM4z+F393fH02Eg/8AZR+K/Vjm7ctmEZtNV6YLXf0tPZzE8QhkUUunTearyY7u3ILMCM2Zai8Frwapns5huHwyKKvUpvNV5Md3blZgIzZlr0xpvBpaRSaG4hErLK9Og6xLm17ZmcZ7TTw+9S+KbMMZ9mX4g+m/KAdpp4fepfFNmAxn2ZfiD6b8oDZhjPsy/EH035Rswxn+F393fH02Eg/9lH4r9WObtyDZgIzZlr0xpvBpaRSaG4hErLK9Og6xLm17Zma01Xpgtd/S09nMTxCGRRS6dN5qvJju7cgsxGbTVemC139LT2cxPEIZFFLp03mq8mO7tyWmqi8abv6pkUmieHxKyyXUoOsS5te2ZnGe4x5o+wfYAfhd/d3x9NhIP/ZR+K/Vjm7ctmEZsy1F4LXg1TPZzDcPhkUVepTearyY7u3KM9pp4fepfFAdmX4g+m/KHZl+IPpvyjZhjPtNPD71L4oFmtNV6YLXf0tPZzE8QhkUUunTearyY7u3LGdpqovBa7+qZ7OYnh8Miil1KbzVeTHd25dMjGfaaeH3qXxQNmAAAAAAAAAAAAAMZ9+fyu9/+uRm01XpjTd/S0ik0TxCJWWS6dB1iXNr2zM+mQAjNmWvTGm8GlpFJobiESssr06DrEubXtmZ2YAAYz/C7+7vj6bCQf8Aso/FfqxzduWzABGbMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyswAAAARm01UXjTd/VMik0Tw+JWWS6lB1iXNr2zM8Z2Zai8abwapkUmhuHxKyyvUoOsS5te2Zn0yAAAAAAAAAAAAAAAAAA5m2mqi8Frv6pns5ieHwyKKXUpvNV5Md3bl0yAEZsy1F4LXg1TPZzDcPhkUVepTearyY7u3KzAAAAAAAAAAAAAAIzaar0wWu/paezmJ4hDIopdOm81Xkx3duQWYAjNmWvTGm8GlpFJobiESssr06DrEubXtmZhZgAAAIzaar0wWu/paezmJ4hDIopdOm81Xkx3duQWYEZsy16Y03g0tIpNDcQiVllenQdYlza9szOzAAAAAMZ9+fyu9/+uBswGM+/P5Xe/wD1yzWZa9MabwaWkUmhuIRKyyvToOsS5te2ZmFmAAAAxn2mnh96l8UCzWZa9MabwaWkUmhuIRKyyvToOsS5te2ZnZjGfaaeH3qXxTZgAAAAAABGbTVemC139LT2cxPEIZFFLp03mq8mO7tyjPfn8rvf/rgbMAAAAAAYz/NH+Eud6lFxn+KbkL+zX9mZ2azLXpjTeDS0ik0NxCJWWV6dB1iXNr2zMwswAAAAAAAIzaar0wWu/paezmJ4hDIopdOm81Xkx3duVmMZ9mX4g+m/KHZl+IPpvygNmAAAYz7TTw+9S+KbMAGM+/P5Xe//AFx2ZfiD6b8o2YYz7MvxB9N+UBswEZsy16Y03g0tIpNDcQiVllenQdYlza9szOzAYz/NH+Eud6lFxn+KbkL+zX9mZ2azLUXgteDVM9nMNw+GRRV6lN5qvJju7clpqovGm7+qZFJonh8Sssl1KDrEubXtmZxn8Lv7u+PpsJB/7KPxX6sc3bkFmsy16Y03g0tIpNDcQiVllenQdYlza9szNZlr0xpvBpaRSaG4hErLK9Og6xLm17ZmazLXpjTeDS0ik0NxCJWWV6dB1iXNr2zM4z+F393fH02Eg/8AZR+K/Vjm7cg2YRmzLXpjTeDS0ik0NxCJWWV6dB1iXNr2zM4z35/K73/65ZrMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyCzAAAYz7MvxB9N+UbMMZ9mX4g+m/KAs1mWvTGm8GlpFJobiESssr06DrEubXtmZ2Yxn+F393fH02Eg/wDZR+K/Vjm7cnfn8rvf/rgWazLXpjTeDS0ik0NxCJWWV6dB1iXNr2zM4z2ZfiD6b8os1mWovBa8GqZ7OYbh8Miir1KbzVeTHd25WYAYz7MvxB9N+UWazLXpjTeDS0ik0NxCJWWV6dB1iXNr2zM7MAMZ9+fyu9/+ubMAEZsy16Y03g0tIpNDcQiVllenQdYlza9szOzAAYz7MvxB9N+UbMMZ/hd/d3x9NhIP/ZR+K/Vjm7cnfn8rvf8A64Dsy/EH035RswjNmWovBa8GqZ7OYbh8Miir1KbzVeTHd25YztNV6Y03f0tIpNE8QiVlkunQdYlza9szMOmRjPuMeaPsH2CzWZa9MabwaWkUmhuIRKyyvToOsS5te2ZnZgMZ9xjzR9g+wbMMZ/hd/d3x9NhIP/ZR+K/Vjm7ctmAARm01Xpgtd/S09nMTxCGRRS6dN5qvJju7crMAIzaar0wWu/paezmJ4hDIopdOm81Xkx3duS01UXjTd/VMik0Tw+JWWS6lB1iXNr2zM4z3GPNH2D7AD8Lv7u+PpsJB/wCyj8V+rHN25O008PvUvilmsy1F4LXg1TPZzDcPhkUVepTearyY7u3KzADGfaaeH3qXxSzWmq9MFrv6Wns5ieIQyKKXTpvNV5Md3blZgAAAAAAAAAAAAAAAAAAAAAAAAAAAGM+/P5Xe/wD1zZgA5m2mq9Mabv6WkUmieIRKyyXToOsS5te2ZnsyzLXpjTeDS0ik0NxCJWWV6dB1iXNr2zM7MAAAAAAAAABGbTVReNN39UyKTRPD4lZZLqUHWJc2vbMzswAGM+4x5o+wfYNmADGfcY80fYPsFmsy1F4LXg1TPZzDcPhkUVepTearyY7u3KzACM2Zai8Frwapns5huHwyKKvUpvNV5Md3blZgAAAAEZtNV6YLXf0tPZzE8QhkUUunTearyY7u3KzADGffn8rvf/rkZsy16YLXg0tPZzDcQhkUVenTearyY7u3LpkAAAAEZtNV6YLXf0tPZzE8QhkUUunTearyY7u3KzGM+008PvUvigO/P5Xe/wD1yzWZa9MabwaWkUmhuIRKyyvToOsS5te2ZnGe/P5Xe/8A1yzWZa9MabwaWkUmhuIRKyyvToOsS5te2ZmFmAAAjNpqvTBa7+lp7OYniEMiil06bzVeTHd25Rn80f4S53qUXGf4puQv7Nf2ZnZrMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyBZlr0xpvBpaRSaG4hErLK9Og6xLm17ZmdmIzZlr0xpvBpaRSaG4hErLK9Og6xLm17ZmazLXpjTeDS0ik0NxCJWWV6dB1iXNr2zMwswBGbMtemNN4NLSKTQ3EIlZZXp0HWJc2vbMzCzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARm01Xpgtd/S09nMTxCGRRS6dN5qvJju7crMAMZ9+fyu9/wDrjsy/EH035RswARmzLXpjTeDS0ik0NxCJWWV6dB1iXNr2zM7MABGbTVReNN39UyKTRPD4lZZLqUHWJc2vbMzjP4Xf3d8fTYSD/wBlH4r9WObty2YAIzZlr0xpvBpaRSaG4hErLK9Og6xLm17ZmcZ/C7+7vj6bCQf+yj8V+rHN25bMAGM+/P5Xe/8A1yzWZai8Frwapns5huHwyKKvUpvNV5Md3blZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjNpqvTBa7+lp7OYniEMiil06bzVeTHd25WYxn2mnh96l8UB35/K73/65ZrMtemNN4NLSKTQ3EIlZZXp0HWJc2vbMzjPfn8rvf8A65ZrMtemNN4NLSKTQ3EIlZZXp0HWJc2vbMzCzAACM2mq9MFrv6Wns5ieIQyKKXTpvNV5Md3bksy16Y03g0tIpNDcQiVllenQdYlza9szOM9mX4g+m/KNmARm01Xpgtd/S09nMTxCGRRS6dN5qvJju7crMYz/AAu/u74+mwkH/so/FfqxzduWzAAIzZlr0xpvBpaRSaG4hErLK9Og6xLm17ZmdmAAjNmWvTGm8GlpFJobiESssr06DrEubXtmZ2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYz7TTw+9S+KbMAGM+/P5Xe//AFx2ZfiD6b8o2YAIzZlr0xpvBpaRSaG4hErLK9Og6xLm17ZmdmAAxn+F393fH02Eg/8AZR+K/Vjm7crNZlr0xpvBpaRSaG4hErLK9Og6xLm17ZmdmAEZtNV6YLXf0tPZzE8QhkUUunTearyY7u3JZlqLwWvBqmezmG4fDIoq9Sm81Xkx3duVmAGM/wALv7u+PpsJB/7KPxX6sc3bk78/ld7/APXNmACM2Zai8Frwapns5huHwyKKvUpvNV5Md3blZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGbTVReNN39UyKTRPD4lZZLqUHWJc2vbMzCzAxn3GPNH2D7A7MvxB9N+UBswAAACM2mq9MFrv6Wns5ieIQyKKXTpvNV5Md3bkFmAMZ9mX4g+m/KA2YAYz/NH+Eud6lFxn+KbkL+zX9mZhswEZsy16Y03g0tIpNDcQiVllenQdYlza9szOzARm01Xpgtd/S09nMTxCGRRS6dN5qvJju7crMRm01UXjTd/VMik0Tw+JWWS6lB1iXNr2zM4z35/K73/AOuBZrTVemC139LT2cxPEIZFFLp03mq8mO7tysxjP80f4S53qUXGf4puQv7Nf2ZnswAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGM+zL8QfTflGzCM2Zai8Frwapns5huHwyKKvUpvNV5Md3bkFmBGbMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyswGM+/P5Xe/8A1yM2Za9MFrwaWns5huIQyKKvTpvNV5Md3bl0yAEZsy1F4LXg1TPZzDcPhkUVepTearyY7u3LGdmWvTBa8Glp7OYbiEMiir06bzVeTHd25dMiM2Zai8Frwapns5huHwyKKvUpvNV5Md3bkCzLUXgteDVM9nMNw+GRRV6lN5qvJju7csZ2Zai8abwapkUmhuHxKyyvUoOsS5te2Zn0yIzZlqLwWvBqmezmG4fDIoq9Sm81Xkx3duQWYjNmWvTGm8GlpFJobiESssr06DrEubXtmZrTVReNN39UyKTRPD4lZZLqUHWJc2vbMzxnZlqLxpvBqmRSaG4fErLK9Sg6xLm17ZmYdMgRm01UXjTd/VMik0Tw+JWWS6lB1iXNr2zM4z+aP8Jc71KLjP8AFNyF/Zr+zMws1mWvTGm8GlpFJobiESssr06DrEubXtmZ2YjNpqovGm7+qZFJonh8Sssl1KDrEubXtmZ2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIzZlr0xpvBpaRSaG4hErLK9Og6xLm17ZmdmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEZtNV6YLXf0tPZzE8QhkUUunTearyY7u3KzGM+008PvUvigO/P5Xe//AFyzWZa9MabwaWkUmhuIRKyyvToOsS5te2ZnGe/P5Xe//XHZl+IPpvygNmAACM2mq9MFrv6Wns5ieIQyKKXTpvNV5Md3bksy16Y03g0tIpNDcQiVllenQdYlza9szOM9mX4g+m/KNmARm01Xpgtd/S09nMTxCGRRS6dN5qvJju7crMYz/C7+7vj6bCQf+yj8V+rHN25bMAAjNmWvTGm8GlpFJobiESssr06DrEubXtmZ2YACM2Za9MabwaWkUmhuIRKyyvToOsS5te2ZnZgABjP80f4S53qUXGf4puQv7Nf2ZmGzDGfaaeH3qXxSzWZa9MabwaWkUmhuIRKyyvToOsS5te2ZnGezL8QfTflAO008PvUvimzAYz7MvxB9N+UBswAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxn2mnh96l8U2YAMZ9+fyu9/wDrjsy/EH035RswARmzLXpjTeDS0ik0NxCJWWV6dB1iXNr2zM7MABjP8Lv7u+PpsJB/7KPxX6sc3blZrMtemNN4NLSKTQ3EIlZZXp0HWJc2vbMzswAjNpqvTBa7+lp7OYniEMiil06bzVeTHd25LMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyswAxn+F393fH02Eg/wDZR+K/Vjm7cnfn8rvf/rmzABGbMtReC14NUz2cw3D4ZFFXqU3mq8mO7tyswAGM+4x5o+wfYHcY80fYPsGzAAAMZ9+fyu9/+uBZrMtemNN4NLSKTQ3EIlZZXp0HWJc2vbMzsxzNtNV6Y03f0tIpNE8QiVlkunQdYlza9szPZlmWvTGm8GlpFJobiESssr06DrEubXtmZhZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//2Q==" alt="キマヤメ語テキスト" style="max-width:100%;width:360px;image-rendering:pixelated;border:1px solid var(--border2);border-radius:8px;background:#fff;padding:12px;display:block;">
+    <p class="dim" style="margin-top:0.5rem;">実際のキマヤメ語表記</p>
+  </div>
+
+  <h2 class="sh">逐語対訳</h2>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>#</th><th>キマヤメ語（ローマ字）</th><th>語義メモ</th><th>日本語</th></tr></thead>
+      <tbody>
+        <tr><td class="dim">1</td><td style="font-family:var(--mono);font-size:13px;">Miyapa</td><td class="dim">Miya＝お願い・依頼 / Pa＝形容詞語尾</td><td>お願い</td></tr>
+        <tr><td class="dim">2</td><td style="font-family:var(--mono);font-size:13px;">Tasota u hayoho se mono Pomatahue nesayu.</td><td class="dim">Tasota＝トラップ / hayoho se mono＝排水導入管 / Pomatahue＝週に一度 / nesayu＝清掃しましょう</td><td>トラップ・排水導入管は週に1度清掃しましょう。</td></tr>
+        <tr><td class="dim">3</td><td style="font-family:var(--mono);font-size:13px;">Nesayamea Ya se hane u huka Mi se hakayu.</td><td class="dim">Nesayamea＝清掃する際は / Ya se hane＝次の手順で / huka＝各部材を / Mi se hakayu＝取りはずし行って下さい</td><td>清掃する際は次の手順で、各部材を取りはずし行って下さい。</td></tr>
+        <tr><td class="dim">4</td><td style="font-family:var(--mono);font-size:13px;">Kihumo Pemokaya te u ma se hayae hakaya.</td><td class="dim">Kihumo＝目皿 / Pemokaya te＝角のへこみ部分を利用すれば / ma se hayae＝簡単に / hakaya＝取りはずしできます</td><td>目皿は角のへこみ部分を利用すれば、簡単に取りはずしできます。</td></tr>
+        <tr><td class="dim">5</td><td style="font-family:var(--mono);font-size:13px;">Kihumo</td><td class="dim">Ki＝大きい物体 / Humo＝皿状</td><td>目皿</td></tr>
+        <tr><td class="dim">6</td><td style="font-family:var(--mono);font-size:13px;">Minemo</td><td class="dim">Mi＝欠けている・取る / Ne＝連鎖 / Mo＝環状</td><td>ヘアキャッチャー</td></tr>
+        <tr><td class="dim">7</td><td style="font-family:var(--mono);font-size:13px;">Hayoho se mono</td><td class="dim">Ha＝人工 / Yo＝下向き / Ho＝風 / se mono＝導入管</td><td>排水導入管</td></tr>
+        <tr><td class="dim">8</td><td style="font-family:var(--mono);font-size:13px;">Minemo Hakaya.</td><td class="dim">Minemo＝ヘアキャッチャー / Hakaya＝はずします</td><td>ヘアキャッチャーをはずします。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh">全文</h2>
+  <div class="lesson-grid">
+    <div class="lesson-col">
+      <div class="lesson-col-label">キマヤメ語</div>
+      <p class="km">Miyapa<br><br>Tasota u hayoho se mono<br>Pomatahue nesayu.<br><br>Nesayamea Ya se hane<br>u huka Mi se hakayu.<br><br>Kihumo Pemokaya te<br>u ma se hayae hakaya.<br><br>Kihumo<br>Minemo<br>Hayoho se mono<br><br>Minemo Hakaya.</p>
+    </div>
+    <div class="lesson-col">
+      <div class="lesson-col-label">日本語</div>
+      <p>お願い<br><br>トラップ・排水導入管は<br>週に一度清掃しましょう。<br><br>清掃する際は次の手順で<br>各部材を取りはずし行って下さい。<br><br>目皿は角のへこみ部分を利用すれば<br>簡単に取りはずしできます。<br><br>目皿<br>ヘアキャッチャー<br>排水導入管<br><br>ヘアキャッチャーをはずします。</p>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="#" onclick="showPage('p2',null)">← #2 述語・品詞・語順</a>
+    <a class="nav-btn" href="#" onclick="showPage('p4',null)">#4 教材：食事 →</a>
+  </div>
+</section>
+
+<!-- #4 教材：食事の準備 -->
+<section class="page" id="p4">
+  <div class="chapter-label">#4</div>
+  <div class="page-title">教材：食事の準備</div>
+  <p class="prose">食材・料理動詞・方向語彙を中心にした教材。単語帳の既存語彙から構成している。</p>
+
+  <h2 class="sh">全文</h2>
+  <div class="lesson-grid">
+    <div class="lesson-col">
+      <div class="lesson-col-label">キマヤメ語</div>
+      <p class="km">Yahuteo.<br><br>Mi Mose maana<br>Kikaata se maana Te<br>Maana hute a mapa.<br><br>Mi Mose a<br>Naka ya.<br>Maana Masa pa.<br><br>Kikaata se maana<br>Honaka ya.<br><br>Maahuhu se maana<br>Yunaka ya.<br><br>Yata.<br>Ne ita Ki wya.<br>Yihuteo.</p>
+    </div>
+    <div class="lesson-col">
+      <div class="lesson-col-label">日本語</div>
+      <p>こんにちは。<br><br>私は牛肉と<br>鶏肉が<br>上にある。<br><br>私は牛を<br>焼く。<br>肉は美しい。<br><br>鶏肉を<br>煮る。<br><br>豚肉を<br>揚げる。<br><br>最後。<br>人々が食べる。<br>さようなら。</p>
+    </div>
+  </div>
+
+  <h2 class="sh">逐語対訳</h2>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>#</th><th>キマヤメ語</th><th>語義メモ</th><th>日本語</th></tr></thead>
+      <tbody>
+        <tr><td class="dim">1</td><td style="font-family:var(--mono);font-size:13px;">Yahuteo.</td><td class="dim">Ya＝前進 / Hu＝頭・点 / Te＝場所 / o＝固有名詞語尾</td><td>こんにちは。</td></tr>
+        <tr><td class="dim">2</td><td style="font-family:var(--mono);font-size:13px;">Mi Mose maana Kikaata se maana Te Maana hute a mapa.</td><td class="dim">Mi＝私 / Mose maana＝牛肉 / Te＝と（接続）/ Kikaata se maana＝鶏肉 / hute a＝上 / mapa＝ある</td><td>私は牛肉と鶏肉が上にある。</td></tr>
+        <tr><td class="dim">3</td><td style="font-family:var(--mono);font-size:13px;">Mi Mose a Naka ya.</td><td class="dim">Mi＝私 / Mose a＝牛（目的語） / Naka ya＝焼く（現在）</td><td>私は牛を焼く。</td></tr>
+        <tr><td class="dim">4</td><td style="font-family:var(--mono);font-size:13px;">Maana Masa pa.</td><td class="dim">Maana＝肉 / Masa pa＝美しい（形容詞）</td><td>肉は美しい。</td></tr>
+        <tr><td class="dim">5</td><td style="font-family:var(--mono);font-size:13px;">Kikaata se maana Honaka ya.</td><td class="dim">Kikaata se maana＝鶏肉 / Honaka ya＝煮る（現在）</td><td>鶏肉を煮る。</td></tr>
+        <tr><td class="dim">6</td><td style="font-family:var(--mono);font-size:13px;">Maahuhu se maana Yunaka ya.</td><td class="dim">Maahuhu se maana＝豚肉 / Yunaka ya＝揚げる（現在）</td><td>豚肉を揚げる。</td></tr>
+        <tr><td class="dim">7</td><td style="font-family:var(--mono);font-size:13px;">Yata.</td><td class="dim">Yata＝最後</td><td>最後。</td></tr>
+        <tr><td class="dim">8</td><td style="font-family:var(--mono);font-size:13px;">Ne ita Ki wya.</td><td class="dim">Ne ita＝人々 / Ki wya＝食べる（口を使う動作）</td><td>人々が食べる。</td></tr>
+        <tr><td class="dim">9</td><td style="font-family:var(--mono);font-size:13px;">Yihuteo.</td><td class="dim">Yi＝（かつて後退の動き） / Hu＝頭 / Te＝場所 / o＝固有名詞語尾</td><td>さようなら。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh">この教材で使われた語彙</h2>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>キマヤメ語</th><th>日本語</th><th>品詞</th></tr></thead>
+      <tbody>
+        <tr><td style="font-family:var(--mono);">Yahuteo</td><td>こんにちは</td><td><span class="badge b-gray" style="font-size:11px;">名詞（固有）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Mi</td><td>私</td><td><span class="badge b-amber" style="font-size:11px;">名詞（主語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Mose maana</td><td>牛肉</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Kikaata se maana</td><td>鶏肉</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Maahuhu se maana</td><td>豚肉</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Maana</td><td>肉</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Mose a</td><td>牛</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Hute a</td><td>上</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Mapa</td><td>ある</td><td><span class="badge b-pink" style="font-size:11px;">形容詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Masa pa</td><td>美しい</td><td><span class="badge b-pink" style="font-size:11px;">形容詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Naka ya</td><td>焼く</td><td><span class="badge b-blue" style="font-size:11px;">動詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Honaka ya</td><td>煮る</td><td><span class="badge b-blue" style="font-size:11px;">動詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Yunaka ya</td><td>揚げる</td><td><span class="badge b-blue" style="font-size:11px;">動詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Ne ita</td><td>人々</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Ki wya</td><td>食べる</td><td><span class="badge b-blue" style="font-size:11px;">動詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Yata</td><td>最後</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Yihuteo</td><td>さようなら</td><td><span class="badge b-gray" style="font-size:11px;">名詞（固有）</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="#" onclick="showPage('p3',null)">← #3 教材：清掃</a>
+    <a class="nav-btn" href="#" onclick="showPage('p5',null)">単語帳 →</a>
+  </div>
+</section>
+
+<!-- 単語帳 -->
+<section class="page" id="p5">
+  <div class="chapter-label">単語帳</div>
+  <div class="page-title">単語帳</div>
+  <p class="prose">89語の全単語一覧。品詞でフィルタリングできる。</p>
+  <div class="wb-filters" id="wb-filters"></div>
+  <div class="tbl-wrap">
+    <table class="tbl" id="wb-table">
+      <thead><tr><th style="width:32px;">#</th><th>単語</th><th>意味</th><th>品詞</th></tr></thead>
+      <tbody id="wb-tbody"><tr><td class="dim" style="text-align:right;padding-right:8px;">1</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Mi</td><td>私</td><td><span class="badge b-amber" style="font-size:11px;padding:2px 7px;">名詞（主語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">2</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Hi</td><td>彼</td><td><span class="badge b-amber" style="font-size:11px;padding:2px 7px;">名詞（主語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">3</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Me</td><td>したい</td><td><span class="badge b-coral" style="font-size:11px;padding:2px 7px;">修飾詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">4</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yahuteo</td><td>こんにちは</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">名詞（固有）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">5</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yihuteo</td><td>さようなら</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">名詞（固有）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">6</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Saateka</td><td>本</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">7</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Saateka ya</td><td>読む</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">8</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Saatea</td><td>紙、書</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">9</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ne saatea</td><td>書類</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">10</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Tapea</td><td>机</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">11</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Pota</td><td>椅子、席</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">12</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Pota ya</td><td>席を立つ</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">13</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Pota wya</td><td>席に座る</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">14</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ita</td><td>人</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">15</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ne ita</td><td>人々</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">16</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ita ya</td><td>行く</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">17</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ita wya</td><td>来る</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">18</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yu ita ya</td><td>立つ</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">19</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yo ita ya</td><td>座る</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">20</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Tei ya</td><td>倒れる</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">21</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Teso</td><td>死</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">名詞（固有）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">22</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Teso ya</td><td>死ぬ</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">23</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ho</td><td>命</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">名詞（固有）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">24</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ho ya</td><td>生きる</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">25</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Seeso</td><td>ヤバい</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">名詞（固有）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">26</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Taa</td><td>ペン</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">27</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Tetaa ya</td><td>書く</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">28</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Soya</td><td>消す</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">29</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Soya sa</td><td>消しゴム</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">30</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Mapa</td><td>ある</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">31</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sopa</td><td>ない</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">32</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Tesa</td><td>定規</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">33</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sinea</td><td>ポーチ、ケース</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">34</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sine taa</td><td>ペンケース、筆箱</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">35</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Masa</td><td>完全、完璧</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">36</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Masa pa</td><td>美しい</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">37</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sata yaa</td><td>ドア</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">38</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sata ya</td><td>ドアを開く</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">39</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sata wya</td><td>ドアを閉める</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">40</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Taya</td><td>開く</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">41</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Tawya</td><td>閉める</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">42</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Taa saate ya</td><td>学ぶ</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">43</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Taa saateka</td><td>教科書</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">44</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Taa saate renihon</td><td>国語（教科）</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">45</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Taa saate hu</td><td>数学（教科）</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">46</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Taa saate reenglish</td><td>英語（教科）</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">47</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Taa saate itaita</td><td>社会（教科）</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">48</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Taa saate seka</td><td>理科（教科）</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">49</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Itaita</td><td>社会</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">50</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Itaita ya</td><td>働く</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">51</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Soitea</td><td>病気</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">52</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Soitepa</td><td>痛い</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">53</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Muhu</td><td>頭</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">名詞（固有）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">54</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Muhu ya</td><td>考える、思う</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">55</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Po</td><td>時間</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">名詞（固有）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">56</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Poyo a</td><td>過去</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">57</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Poya a</td><td>現在</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">58</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Poyu a</td><td>未来</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">59</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Maana</td><td>肉</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">60</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Mose a</td><td>牛</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">61</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Mose maana</td><td>牛肉</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">62</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Kikaata</td><td>鶏</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">63</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Kikaata se maana</td><td>鶏肉</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">64</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Maahuhu</td><td>豚</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">65</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Maahuhu se maana</td><td>豚肉</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">66</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Taya a</td><td>最初</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">67</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yata</td><td>最後</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">68</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Haya</td><td>できる</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">69</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Naka ya</td><td>焼く</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">70</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Honaka ya</td><td>煮る</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">71</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yunaka ya</td><td>揚げる</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">72</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Hutaya a</td><td>前</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">73</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Huyata</td><td>後ろ</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">74</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yapa a</td><td>右</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">75</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yipa a</td><td>左</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">76</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Saahu</td><td>中</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">名詞（固有）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">77</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Husa</td><td>外</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">78</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Hute a</td><td>上</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">79</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Tehu</td><td>下</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">名詞（固有）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">80</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Kiita</td><td>目</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">81</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Kiita ya</td><td>見る</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">82</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ki</td><td>口</td><td><span class="badge b-amber" style="font-size:11px;padding:2px 7px;">名詞（主語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">83</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Kima ya</td><td>喋る</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">84</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ki wya</td><td>食べる</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">85</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ki ya</td><td>吐く</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">86</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Kina wya</td><td>飲む</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">87</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">—（友達）</td><td>友達</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">—</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">88</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">—（子供）</td><td>子供</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">—</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">89</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">—（大人）</td><td>大人</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">—</span></td></tr>
+</tbody>
+    </table>
+  </div>
+  <p class="dim" id="wb-count">89語</p>
+  <div class="nav-footer">
+    <a class="nav-btn" href="#" onclick="showPage('p4',null)">← #4 教材：食事</a>
+    <a class="nav-btn" href="#" onclick="showPage('cover',null)">↑ 目次</a>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+const CHARS = [
+  {n:"Ma",c:"b-m",s:"M系",k:"円、球、星、太陽",g:"すべて、完全、普遍"},
+  {n:"Mi",c:"b-m",s:"M系",k:"左向きの半円・括弧",g:"欠けている、私"},
+  {n:"Mu",c:"b-m",s:"M系",k:"上向きの半円",g:"向上、女性"},
+  {n:"Me",c:"b-m",s:"M系",k:"右向きの半円・括弧",g:"名詞化、代名詞、物事"},
+  {n:"Mo",c:"b-m",s:"M系",k:"下向きの半円、器",g:"環状、男性"},
+  {n:"Ka",c:"b-k",s:"K系",k:"上向きの三角、火",g:"物体"},
+  {n:"Ki",c:"b-k",s:"K系",k:"左向きの三角",g:"大きい"},
+  {n:"Ke",c:"b-k",s:"K系",k:"右向きの三角",g:"小さい"},
+  {n:"Ko",c:"b-k",s:"K系",k:"下向きの三角",g:"土台"},
+  {n:"Sa",c:"b-s",s:"S系",k:"四角",g:"整った、漠然とした"},
+  {n:"Si",c:"b-s",s:"S系",k:"逆向きのコの字、入れ物",g:"保つ"},
+  {n:"Se",c:"b-s",s:"S系",k:"十字",g:"補語、接続、交差、関係"},
+  {n:"So",c:"b-s",s:"S系",k:"バツ印",g:"否定、ない、消去"},
+  {n:"Ta",c:"b-t",s:"T系",k:"縦向きの線、壁",g:"数詞、障害、隔たり"},
+  {n:"Ti",c:"b-t",s:"T系",k:"斜め右向きの線、上り坂",g:"上方"},
+  {n:"Te",c:"b-t",s:"T系",k:"横向きの線、床、地面",g:"接続詞、場所"},
+  {n:"To",c:"b-t",s:"T系",k:"斜め左向きの線、下り坂",g:"下方"},
+  {n:"Na",c:"b-n",s:"N系",k:"横向きの波",g:"流動、広がり"},
+  {n:"Ni",c:"b-n",s:"N系",k:"縦向きの波",g:"振動、変化"},
+  {n:"Ne",c:"b-n",s:"N系",k:"縦向きの糸",g:"複数、継続、連鎖"},
+  {n:"No",c:"b-n",s:"N系",k:"横向きの糸",g:"関係、並列"},
+  {n:"Ha",c:"b-h",s:"H系",k:"前に向けた手",g:"前進させる人工的な行為"},
+  {n:"Hi",c:"b-h",s:"H系",k:"下に向けた手",g:"後退させる人工的な行為"},
+  {n:"Hu",c:"b-h",s:"H系",k:"土、点、頭",g:"1、点、個体"},
+  {n:"He",c:"b-h",s:"H系",k:"水",g:"後退する自然"},
+  {n:"Ho",c:"b-h",s:"H系",k:"風",g:"前進する自然"},
+  {n:"Ya",c:"b-y",s:"Y系",k:"横、横向きの動き",g:"動詞、現在"},
+  {n:"Yu",c:"b-y",s:"Y系",k:"上、上向きの動き",g:"動詞、未来"},
+  {n:"Yo",c:"b-y",s:"Y系",k:"下、下向きの動き",g:"動詞、過去"},
+  {n:"Pa",c:"b-p",s:"P系",k:"右下向きの角、鉤括弧閉じ",g:"形容詞、終わり"},
+  {n:"Pu",c:"b-p",s:"P系",k:"右上向きの角、角",g:"良い、強い"},
+  {n:"Pe",c:"b-p",s:"P系",k:"左上向きの角、鉤括弧",g:"始まり"},
+  {n:"Po",c:"b-p",s:"P系",k:"左下向きの角",g:"時間、弱い"},
+  {n:"Ra",c:"b-r",s:"R系",k:"電気、雷",g:"技術、エネルギー"},
+  {n:"Re",c:"b-r",s:"R系",k:"記号",g:"借用語、外来語、異文化"},
+];
+
+function showPage(id, linkEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const map = {cover:0,p1:1,p2:2,p3:3,p4:4,p5:5};
+  if (linkEl) linkEl.classList.add('active');
+  else document.querySelectorAll('.nav-item')[map[id]]?.classList.add('active');
+  window.scrollTo(0,0);
+  return false;
+}
+
+// Build char table
+const tbody = document.getElementById('char-tbody');
+if (tbody) {
+  CHARS.forEach(d => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><span class="char-name">${d.n}</span></td><td><span class="badge ${d.c}">${d.s}</span></td><td>${d.k}</td><td>${d.g}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// Intro
+const pros = [
+  "35文字の組み合わせで語彙が指数関数的に拡張できる。2文字で最大35²≈1,200語、3文字で35³≈42,000語規模に達する。",
+  "各文字が視覚的意味と概念的意味の二層を持つため、初見の単語でも構成文字から意味を推測しやすい。",
+  "品詞は語末の音で一意に確定するため、文法上の曖昧さが少ない。",
+  "語順が「強調したい順」という一原則に統一されており、複雑な格変化を学ぶ必要がない。",
+  "W の付加による受け身・Ne による進行形など、活用の規則が少数かつ規則的で拡張性が高い。",
+  "Re 系統による外来語の取り込み規則を持つため、既存言語からの借用が体系的に行える。"
+];
+const cons = [
+  "語彙の意味が文字の組み合わせに依存するため、複数の解釈が生じやすく、造語の標準化が難しい。",
+  "表語文字の習得コストが高い。35文字すべての視覚的意味・概念的意味を記憶する必要がある。",
+  "語順が「強調順」という主観的な基準に依るため、話者間で語順が揺れやすい可能性がある。",
+  "抽象的・感情的な概念は視覚的意味に基づく造語が困難で、恣意的な割り当てが増えるリスクがある。",
+  "文字の縦配置・反転・長音化の組み合わせにより、書記上の視覚的複雑性が高くなりうる。"
+];
+const stats = [
+  {val:"40",lbl:"基本文字数（子音35＋母音5）"},
+  {val:"35",lbl:"子音"},
+  {val:"5",lbl:"母音"},
+  {val:"35²+",lbl:"理論語彙数（2文字）"},
+  {val:"5",lbl:"動詞活用形"}
+];
+
+function renderList(id, items) {
+  const ul = document.getElementById(id);
+  if (!ul) return;
+  items.forEach(t => { const li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+}
+function renderStats() {
+  const row = document.getElementById('stats-row');
+  if (!row) return;
+  stats.forEach(s => {
+    const c = document.createElement('div'); c.className = 'stat-card';
+    c.innerHTML = `<div class="stat-val">${s.val}</div><div class="stat-lbl">${s.lbl}</div>`;
+    row.appendChild(c);
+  });
+}
+renderList('pros-list', pros);
+renderList('cons-list', cons);
+renderStats();
+
+// Wordbook filter
+const WB_POS = ["すべて","動詞","形容詞","名詞（主語）","名詞（目的語）","名詞（固有）","修飾詞","—"];
+function wbBuildFilters() {
+  const wrap = document.getElementById('wb-filters');
+  if (!wrap) return;
+  WB_POS.forEach(pos => {
+    const btn = document.createElement('button');
+    btn.className = 'wb-filter-btn' + (pos === 'すべて' ? ' active' : '');
+    btn.textContent = pos;
+    btn.onclick = () => {
+      document.querySelectorAll('.wb-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      let count = 0;
+      document.querySelectorAll('#wb-tbody tr').forEach(tr => {
+        const sp = tr.querySelector('td:last-child span');
+        const rp = sp ? sp.textContent.trim() : '—';
+        const show = pos === 'すべて' || rp === pos;
+        tr.classList.toggle('hidden', !show);
+        if (show) count++;
+      });
+      const el = document.getElementById('wb-count');
+      if (el) el.textContent = count + '語' + (pos !== 'すべて' ? `（${pos}）` : '');
+    };
+    wrap.appendChild(btn);
+  });
+}
+wbBuildFilters();
+</script>
+</body>
+</html>
