@@ -211,8 +211,9 @@ body.sidebar-open .sidebar-overlay { display: block; }
     <a class="nav-item" href="#" data-page="p1"><span class="ch">#1</span>文字と発音</a>
     <a class="nav-item" href="#" data-page="p2"><span class="ch">#2</span>述語・品詞・語順</a>
     <a class="nav-item" href="#" data-page="p3"><span class="ch">#3</span>教材：清掃</a>
-    <a class="nav-item" href="#" data-page="p4"><span class="ch">#4</span>教材：食事</a>
-    <a class="nav-item" href="#" data-page="p5"><span class="ch">帳</span>単語帳</a>
+    <a class="nav-item" href="#" data-page="p4"><span class="ch">#4</span>教材：りんご</a>
+    <a class="nav-item" href="#" data-page="p5"><span class="ch">#5</span>りんごを食べたい58文</a>
+    <a class="nav-item" href="#" data-page="p6"><span class="ch">帳</span>単語帳</a>
   </nav>
 </aside>
 <main class="main">
@@ -250,8 +251,9 @@ body.sidebar-open .sidebar-overlay { display: block; }
     <li class="toc-item" data-page="p1"><span class="toc-ch">#1</span><span class="toc-name">文字と発音</span></li>
     <li class="toc-item" data-page="p2"><span class="toc-ch">#2</span><span class="toc-name">述語・品詞・語順</span></li>
     <li class="toc-item" data-page="p3"><span class="toc-ch">#3</span><span class="toc-name">教材：お風呂の排水口清掃</span></li>
-    <li class="toc-item" data-page="p4"><span class="toc-ch">#4</span><span class="toc-name">教材：食事の準備</span></li>
-    <li class="toc-item" data-page="p5"><span class="toc-ch">帳</span><span class="toc-name">単語帳</span></li>
+    <li class="toc-item" data-page="p4"><span class="toc-ch">#4</span><span class="toc-name">教材：りんごを食べたい</span></li>
+    <li class="toc-item" data-page="p5"><span class="toc-ch">#5</span><span class="toc-name">りんごを食べたい58文</span></li>
+    <li class="toc-item" data-page="p6"><span class="toc-ch">帳</span><span class="toc-name">単語帳</span></li>
   </ul>
 </section>
 
@@ -377,10 +379,36 @@ body.sidebar-open .sidebar-overlay { display: block; }
 
   <h2 class="sh">語順</h2>
   <ul class="rules">
-    <li><span class="rnum">1</span><span>基本的に強調したい順番に置く。</span></li>
-    <li><span class="rnum">2</span><span>補語は修飾する単語の直前に置く。</span></li>
-    <li><span class="rnum">3</span><span>複数の修飾は強調したい順番に並べ造語する。「Se」や「Te」などの品詞確定は最後に置いたもの以外省略する。</span></li>
+    <li><span class="rnum">1</span><span>基本語順は<strong>主語 → 動詞 → 目的語</strong>。</span></li>
+    <li><span class="rnum">2</span><span>補語（修飾詞）は修飾する単語の直前に置く。</span></li>
+    <li><span class="rnum">3</span><span>複数の修飾は強調したい順番に並べる。「Se」などの品詞確定は最後に置いたもの以外省略できる。</span></li>
+    <li><span class="rnum">4</span><span>主語・動詞・目的語それぞれのブロックの先頭文字のみ大文字。修飾語はすべて小文字。</span></li>
   </ul>
+
+  <h2 class="sh">確定した文法規則</h2>
+  <p class="prose">「りんごを食べたい58文」への対応を通じて確定した文法規則の一覧。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>規則</th><th>内容</th><th>例</th></tr></thead>
+      <tbody>
+        <tr><td>Ne</td><td>連続（名詞前→複数、動詞前→進行、数詞後→継続期間）</td><td style="font-family:var(--mono);font-size:12px;">Ne hi / ne kiya / 3 ne poya</td></tr>
+        <tr><td>Se</td><td>前の単語を後の単語に修飾（省略可）</td><td style="font-family:var(--mono);font-size:12px;">Mi se mimu / poyo se kiya</td></tr>
+        <tr><td>完了</td><td>Yata se + 動詞</td><td style="font-family:var(--mono);font-size:12px;">Yata se kiya</td></tr>
+        <tr><td>経験</td><td>動詞 + 目的語 + me + Kapa</td><td style="font-family:var(--mono);font-size:12px;">kiyo Hema me Kapa</td></tr>
+        <tr><td>存在</td><td>Kapa（ある）/ Sokapa（ない）</td><td style="font-family:var(--mono);font-size:12px;">Su se Kapa</td></tr>
+        <tr><td>指示詞</td><td>Yate（この）/ Yute（その）/ Yote（あの）</td><td style="font-family:var(--mono);font-size:12px;">Yate hema</td></tr>
+        <tr><td>モダリティ</td><td>Muhu se（かもしれない）/ mi se（したい）/ Miwya se（伝聞）</td><td style="font-family:var(--mono);font-size:12px;">Muhu se kiya</td></tr>
+        <tr><td>疑問文</td><td>Muhu se + 動詞 + ?</td><td style="font-family:var(--mono);font-size:12px;">Hi Muhu se kiya Homa?</td></tr>
+        <tr><td>否定</td><td>So se + 動詞（se省略可）</td><td style="font-family:var(--mono);font-size:12px;">Mi So se kiya Hema</td></tr>
+        <tr><td>並列</td><td>hu（と）</td><td style="font-family:var(--mono);font-size:12px;">Mi hu mi se mimu</td></tr>
+        <tr><td>引用</td><td>"〜"a で目的語化</td><td style="font-family:var(--mono);font-size:12px;">"So se kiyo Hema"a</td></tr>
+        <tr><td>応答</td><td>Ma（はい）/ So（いいえ）</td><td style="font-family:var(--mono);font-size:12px;">Ma, Mi kiya Homa</td></tr>
+        <tr><td>接続</td><td>Yate（だから）/ Yahute（一方で）</td><td style="font-family:var(--mono);font-size:12px;">Yate, So se kiwya</td></tr>
+        <tr><td>数詞</td><td>Ta + 文字 / アラビア数字をそのまま使用</td><td style="font-family:var(--mono);font-size:12px;">Tahu（一つ）/ 3 / 6</td></tr>
+        <tr><td>時間修飾</td><td>数 + 時間語 + se + 動詞</td><td style="font-family:var(--mono);font-size:12px;">6 poyo se kiyo</td></tr>
+      </tbody>
+    </table>
+  </div>
 
   <div class="nav-footer">
     <a class="nav-btn" href="#" data-page="p1">← #1 文字と発音</a>
@@ -432,25 +460,25 @@ body.sidebar-open .sidebar-overlay { display: block; }
 
   <div class="nav-footer">
     <a class="nav-btn" href="#" data-page="p2">← #2 述語・品詞・語順</a>
-    <a class="nav-btn" href="#" data-page="p4">#4 教材：食事 →</a>
+    <a class="nav-btn" href="#" data-page="p4">#4 教材：りんご →</a>
   </div>
 </section>
 
-<!-- #4 教材：食事の準備 -->
+<!-- #4 教材：りんごを食べたい -->
 <section class="page" id="p4">
   <div class="chapter-label">#4</div>
-  <div class="page-title">教材：食事の準備</div>
-  <p class="prose">食材・料理動詞・方向語彙を中心にした教材。単語帳の既存語彙から構成している。</p>
+  <div class="page-title">教材：りんごを食べたい</div>
+  <p class="prose">「りんごを食べたい58文」から代表的な文を抜粋した入門教材。基本的な文構造・時制・否定・疑問を学ぶ。</p>
 
-  <h2 class="sh">全文</h2>
+  <h2 class="sh">基本文（1〜5文）</h2>
   <div class="lesson-grid">
     <div class="lesson-col">
       <div class="lesson-col-label">キマヤメ語</div>
-      <p class="km">Yahuteo.<br><br>Mi Mose maana<br>Kikaata se maana Te<br>Maana hute a mapa.<br><br>Mi Mose a<br>Naka ya.<br>Maana Masa pa.<br><br>Kikaata se maana<br>Honaka ya.<br><br>Maahuhu se maana<br>Yunaka ya.<br><br>Yata.<br>Ne ita Ki wya.<br>Yihuteo.</p>
+      <p class="km">Mi kiwya Hema.<br>Mi kiyo Hema.<br>Hi ne kiya Hema.<br>Muhi yata se kiya Hema.<br>Muhi yata se kiyo Hema.</p>
     </div>
     <div class="lesson-col">
       <div class="lesson-col-label">日本語</div>
-      <p>こんにちは。<br><br>私は牛肉と<br>鶏肉が<br>上にある。<br><br>私は牛を<br>焼く。<br>肉は美しい。<br><br>鶏肉を<br>煮る。<br><br>豚肉を<br>揚げる。<br><br>最後。<br>人々が食べる。<br>さようなら。</p>
+      <p>私はりんごを食べる。<br>私はりんごを食べた。<br>彼はりんごを食べている。<br>彼女はりんごを食べ終わっている。<br>彼女はりんごを食べ終わっていた。</p>
     </div>
   </div>
 
@@ -459,15 +487,16 @@ body.sidebar-open .sidebar-overlay { display: block; }
     <table class="tbl">
       <thead><tr><th>#</th><th>キマヤメ語</th><th>語義メモ</th><th>日本語</th></tr></thead>
       <tbody>
-        <tr><td class="dim">1</td><td style="font-family:var(--mono);font-size:13px;">Yahuteo.</td><td class="dim">Ya＝前進 / Hu＝頭・点 / Te＝場所 / o＝固有名詞語尾</td><td>こんにちは。</td></tr>
-        <tr><td class="dim">2</td><td style="font-family:var(--mono);font-size:13px;">Mi Mose maana Kikaata se maana Te Maana hute a mapa.</td><td class="dim">Mi＝私 / Mose maana＝牛肉 / Te＝と（接続）/ Kikaata se maana＝鶏肉 / hute a＝上 / mapa＝ある</td><td>私は牛肉と鶏肉が上にある。</td></tr>
-        <tr><td class="dim">3</td><td style="font-family:var(--mono);font-size:13px;">Mi Mose a Naka ya.</td><td class="dim">Mi＝私 / Mose a＝牛（目的語） / Naka ya＝焼く（現在）</td><td>私は牛を焼く。</td></tr>
-        <tr><td class="dim">4</td><td style="font-family:var(--mono);font-size:13px;">Maana Masa pa.</td><td class="dim">Maana＝肉 / Masa pa＝美しい（形容詞）</td><td>肉は美しい。</td></tr>
-        <tr><td class="dim">5</td><td style="font-family:var(--mono);font-size:13px;">Kikaata se maana Honaka ya.</td><td class="dim">Kikaata se maana＝鶏肉 / Honaka ya＝煮る（現在）</td><td>鶏肉を煮る。</td></tr>
-        <tr><td class="dim">6</td><td style="font-family:var(--mono);font-size:13px;">Maahuhu se maana Yunaka ya.</td><td class="dim">Maahuhu se maana＝豚肉 / Yunaka ya＝揚げる（現在）</td><td>豚肉を揚げる。</td></tr>
-        <tr><td class="dim">7</td><td style="font-family:var(--mono);font-size:13px;">Yata.</td><td class="dim">Yata＝最後</td><td>最後。</td></tr>
-        <tr><td class="dim">8</td><td style="font-family:var(--mono);font-size:13px;">Ne ita Ki wya.</td><td class="dim">Ne ita＝人々 / Ki wya＝食べる（口を使う動作）</td><td>人々が食べる。</td></tr>
-        <tr><td class="dim">9</td><td style="font-family:var(--mono);font-size:13px;">Yihuteo.</td><td class="dim">Yi＝（かつて後退の動き） / Hu＝頭 / Te＝場所 / o＝固有名詞語尾</td><td>さようなら。</td></tr>
+        <tr><td class="dim">1</td><td style="font-family:var(--mono);font-size:13px;">Mi kiwya Hema</td><td class="dim">Mi＝私 / kiwya＝食べる（現在） / Hema＝りんご</td><td>私はりんごを食べる。</td></tr>
+        <tr><td class="dim">2</td><td style="font-family:var(--mono);font-size:13px;">Mi kiyo Hema</td><td class="dim">kiyo＝食べた（過去・yo語尾）</td><td>私はりんごを食べた。</td></tr>
+        <tr><td class="dim">3</td><td style="font-family:var(--mono);font-size:13px;">Hi ne kiya Hema</td><td class="dim">Hi＝彼 / ne＝連続（進行）/ kiya＝食べる</td><td>彼はりんごを食べている。</td></tr>
+        <tr><td class="dim">4</td><td style="font-family:var(--mono);font-size:13px;">Muhi yata se kiya Hema</td><td class="dim">Muhi＝彼女 / yata se＝し終わった（完了修飾）</td><td>彼女はりんごを食べ終わっている。</td></tr>
+        <tr><td class="dim">5</td><td style="font-family:var(--mono);font-size:13px;">Muhi yata se kiyo Hema</td><td class="dim">kiyo＝過去形で完了が過去に</td><td>彼女はりんごを食べ終わっていた。</td></tr>
+        <tr><td class="dim">21</td><td style="font-family:var(--mono);font-size:13px;">Mi So se kiya Hema</td><td class="dim">So se＝否定修飾</td><td>私はりんごを食べない。</td></tr>
+        <tr><td class="dim">26</td><td style="font-family:var(--mono);font-size:13px;">Mi Hema Mi se kiya</td><td class="dim">Mi se＝したい（欲求修飾）</td><td>私はりんごを食べたい。</td></tr>
+        <tr><td class="dim">33</td><td style="font-family:var(--mono);font-size:13px;">Hi Muhu se kiya Homa?</td><td class="dim">Muhu se＝？（疑問）/ Homa＝みかん</td><td>あなたはみかんを食べるか？</td></tr>
+        <tr><td class="dim">34</td><td style="font-family:var(--mono);font-size:13px;">Ma, Mi Homa Kiya</td><td class="dim">Ma＝はい</td><td>はい、私はみかんを食べます。</td></tr>
+        <tr><td class="dim">58</td><td style="font-family:var(--mono);font-size:13px;">Yate Mase sopa</td><td class="dim">Yate＝ここ / Mase＝何も / sopa＝ない</td><td>ここには何もない。</td></tr>
       </tbody>
     </table>
   </div>
@@ -477,38 +506,119 @@ body.sidebar-open .sidebar-overlay { display: block; }
     <table class="tbl">
       <thead><tr><th>キマヤメ語</th><th>日本語</th><th>品詞</th></tr></thead>
       <tbody>
-        <tr><td style="font-family:var(--mono);">Yahuteo</td><td>こんにちは</td><td><span class="badge b-gray" style="font-size:11px;">名詞（固有）</span></td></tr>
         <tr><td style="font-family:var(--mono);">Mi</td><td>私</td><td><span class="badge b-amber" style="font-size:11px;">名詞（主語）</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Mose maana</td><td>牛肉</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Kikaata se maana</td><td>鶏肉</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Maahuhu se maana</td><td>豚肉</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Maana</td><td>肉</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Mose a</td><td>牛</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Hute a</td><td>上</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Mapa</td><td>ある</td><td><span class="badge b-pink" style="font-size:11px;">形容詞</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Masa pa</td><td>美しい</td><td><span class="badge b-pink" style="font-size:11px;">形容詞</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Naka ya</td><td>焼く</td><td><span class="badge b-blue" style="font-size:11px;">動詞</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Honaka ya</td><td>煮る</td><td><span class="badge b-blue" style="font-size:11px;">動詞</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Yunaka ya</td><td>揚げる</td><td><span class="badge b-blue" style="font-size:11px;">動詞</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Ne ita</td><td>人々</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Ki wya</td><td>食べる</td><td><span class="badge b-blue" style="font-size:11px;">動詞</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Yata</td><td>最後</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
-        <tr><td style="font-family:var(--mono);">Yihuteo</td><td>さようなら</td><td><span class="badge b-gray" style="font-size:11px;">名詞（固有）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Hi</td><td>彼・あなた</td><td><span class="badge b-amber" style="font-size:11px;">名詞（主語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Muhi</td><td>彼女</td><td><span class="badge b-amber" style="font-size:11px;">名詞（主語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Hema</td><td>りんご</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Homa</td><td>みかん</td><td><span class="badge b-green" style="font-size:11px;">名詞（目的語）</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Kiwya</td><td>食べる（現在）</td><td><span class="badge b-blue" style="font-size:11px;">動詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Kiyo</td><td>食べた（過去）</td><td><span class="badge b-blue" style="font-size:11px;">動詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">ne</td><td>連続（進行・複数）</td><td><span class="badge b-coral" style="font-size:11px;">修飾詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">yata se</td><td>し終わった（完了）</td><td><span class="badge b-coral" style="font-size:11px;">修飾詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">So se</td><td>否定</td><td><span class="badge b-coral" style="font-size:11px;">修飾詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Mi se</td><td>したい（欲求）</td><td><span class="badge b-coral" style="font-size:11px;">修飾詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Muhu se</td><td>疑問・かもしれない</td><td><span class="badge b-coral" style="font-size:11px;">修飾詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Ma</td><td>はい</td><td><span class="badge b-gray" style="font-size:11px;">応答</span></td></tr>
+        <tr><td style="font-family:var(--mono);">So</td><td>いいえ</td><td><span class="badge b-gray" style="font-size:11px;">応答</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Yate</td><td>この・ここ・だから</td><td><span class="badge b-coral" style="font-size:11px;">修飾詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Mase</td><td>何も</td><td><span class="badge b-coral" style="font-size:11px;">修飾詞</span></td></tr>
+        <tr><td style="font-family:var(--mono);">Sopa</td><td>ない</td><td><span class="badge b-pink" style="font-size:11px;">形容詞</span></td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="nav-footer">
     <a class="nav-btn" href="#" data-page="p3">← #3 教材：清掃</a>
-    <a class="nav-btn" href="#" data-page="p5">単語帳 →</a>
+    <a class="nav-btn" href="#" data-page="p5">#5 りんごを食べたい58文 →</a>
+  </div>
+</section>
+
+<!-- #5 りんごを食べたい58文 -->
+<section class="page" id="p5">
+  <div class="chapter-label">#5</div>
+  <div class="page-title">りんごを食べたい58文</div>
+  <div class="note">2014年9月20日、ざすろん氏により作成された人工言語検証用の標準文セット。言語制作時に文法事項をある程度網羅的に把握するための58文で、通称「ざすろんリスト」。引用元：<a href="https://zaslon.info/langcontents/1450/" target="_blank" style="color:var(--accent);">Starlight Ensign — りんごを食べたい58文</a></div>
+  <p class="prose" style="margin-top:1rem;">キマヤメ語での対応訳。主語・動詞・目的語それぞれのブロックの先頭文字のみ大文字。括弧内は補足説明。確定した文法規則は <a href="#" data-page="p2" style="color:var(--accent);">#2 述語・品詞・語順</a> を参照。</p>
+
+  <h2 class="sh">58文一覧</h2>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th style="width:28px;">#</th><th>キマヤメ語</th><th>日本語</th></tr></thead>
+      <tbody>
+        <tr><td class="dim">1</td><td style="font-family:var(--mono);font-size:12px;">Mi kiwya Hema</td><td>私はりんごを食べる。</td></tr>
+        <tr><td class="dim">2</td><td style="font-family:var(--mono);font-size:12px;">Mi kiyo Hema</td><td>私はりんごを食べた。</td></tr>
+        <tr><td class="dim">3</td><td style="font-family:var(--mono);font-size:12px;">Hi ne kiya Hema</td><td>彼はりんごを食べている。</td></tr>
+        <tr><td class="dim">4</td><td style="font-family:var(--mono);font-size:12px;">Muhi yata se kiya Hema</td><td>彼女はりんごを食べ終わっている。</td></tr>
+        <tr><td class="dim">5</td><td style="font-family:var(--mono);font-size:12px;">Muhi yata se kiyo Hema</td><td>彼女はりんごを食べ終わっていた。</td></tr>
+        <tr><td class="dim">6</td><td style="font-family:var(--mono);font-size:12px;">Mi se mimu kiyo Hema me Kapa</td><td>私の妻はりんごを食べたことがある。</td></tr>
+        <tr><td class="dim">7</td><td style="font-family:var(--mono);font-size:12px;">Mi se mimu Hema poma se kiya</td><td>私の妻はりんごを毎日食べる。</td></tr>
+        <tr><td class="dim">8</td><td style="font-family:var(--mono);font-size:12px;">Mi hu mi se mimu Hema poyo se kiyo</td><td>私と私の妻は昨日りんごを食べた。</td></tr>
+        <tr><td class="dim">9</td><td style="font-family:var(--mono);font-size:12px;">Mi hu mi se mimu Hema 6 poyo se kiyo</td><td>私と私の妻は6日前にりんごを食べた。</td></tr>
+        <tr><td class="dim">10</td><td style="font-family:var(--mono);font-size:12px;">Ne hi Hema poyu se kiya</td><td>彼らは明日りんごを食べる。</td></tr>
+        <tr><td class="dim">11</td><td style="font-family:var(--mono);font-size:12px;">Ne hi Hema 6 poyu se kiyu</td><td>彼らは6日後にりんごを食べる。</td></tr>
+        <tr><td class="dim">12</td><td style="font-family:var(--mono);font-size:12px;">Ne muhi Hema 3 ne poya se kiya</td><td>彼女らは3日間りんごを食べている。</td></tr>
+        <tr><td class="dim">13</td><td style="font-family:var(--mono);font-size:12px;">Ne muhi Hema 5 pome ne kiya</td><td>彼女らはりんごを5分間食べ続けている。</td></tr>
+        <tr><td class="dim">13a</td><td style="font-family:var(--mono);font-size:12px;">Ne muhi Hema 5 pome yata se kiyo</td><td>彼女らはりんごを5分で食べ終えた。</td></tr>
+        <tr><td class="dim">14</td><td style="font-family:var(--mono);font-size:12px;">Ne hi Hema mapoya se kiya</td><td>彼は常にりんごを食べている。</td></tr>
+        <tr><td class="dim">15</td><td style="font-family:var(--mono);font-size:12px;">Hemai 3 Kapa</td><td>りんごが3つある。</td></tr>
+        <tr><td class="dim">16</td><td style="font-family:var(--mono);font-size:12px;">Ne hemai Su se Kapa</td><td>りんご達がテーブルの上にある。</td></tr>
+        <tr><td class="dim">17</td><td style="font-family:var(--mono);font-size:12px;">Muhutai kiya Yote hema</td><td>誰かがあのりんごを食べてしまった。</td></tr>
+        <tr><td class="dim">18</td><td style="font-family:var(--mono);font-size:12px;">Muhutai muhu se kiya Yate hema</td><td>誰かがこのりんごを食べそうだ。</td></tr>
+        <tr><td class="dim">19</td><td style="font-family:var(--mono);font-size:12px;">Muhutai miwya se kiya Yate, yote, yute hema</td><td>誰かがこのりんご、そのりんご、あのりんごを食べたそうだ。</td></tr>
+        <tr><td class="dim">20</td><td style="font-family:var(--mono);font-size:12px;">Hema tahu se Sokapa</td><td>りんごがひとつもない。</td></tr>
+        <tr><td class="dim">21</td><td style="font-family:var(--mono);font-size:12px;">Mi So se kiya Hema</td><td>私はりんごを食べない。</td></tr>
+        <tr><td class="dim">22</td><td style="font-family:var(--mono);font-size:12px;">(Hema Sopa Me yate) Mi So se kiwya Hema</td><td>私はりんごを食べられない。（りんごがないので）</td></tr>
+        <tr><td class="dim">23</td><td style="font-family:var(--mono);font-size:12px;">Mi Hema Yo tea</td><td>私はりんごを床に落とした。</td></tr>
+        <tr><td class="dim">24</td><td style="font-family:var(--mono);font-size:12px;">Hemai Yo tea</td><td>りんごが床に落ちた。</td></tr>
+        <tr><td class="dim">25</td><td style="font-family:var(--mono);font-size:12px;">Hema So se kiwya (Sopa se yo Kiwya me haya)</td><td>りんごは食べられない。（可食でなくなった）</td></tr>
+        <tr><td class="dim">26</td><td style="font-family:var(--mono);font-size:12px;">Mi Hema Mi se kiya</td><td>私はりんごを食べたい。</td></tr>
+        <tr><td class="dim">27</td><td style="font-family:var(--mono);font-size:12px;">Mi Hema Mi se Sukaya</td><td>私はりんごを買いたい。</td></tr>
+        <tr><td class="dim">28</td><td style="font-family:var(--mono);font-size:12px;">Nipa Yate hemai</td><td>このりんごは汚い。</td></tr>
+        <tr><td class="dim">29</td><td style="font-family:var(--mono);font-size:12px;">Somapa Yate hemai</td><td>このりんごは綺麗ではない。</td></tr>
+        <tr><td class="dim">30</td><td style="font-family:var(--mono);font-size:12px;">Yote hema Muhu se kiwya</td><td>あのりんごは食べられそうだ。</td></tr>
+        <tr><td class="dim">31</td><td style="font-family:var(--mono);font-size:12px;">Yote So se hema</td><td>あれはりんごではない。</td></tr>
+        <tr><td class="dim">32</td><td style="font-family:var(--mono);font-size:12px;">Yate So se hema se Homa</td><td>これはりんごではなくみかんだ。</td></tr>
+        <tr><td class="dim">33</td><td style="font-family:var(--mono);font-size:12px;">Hi Muhu se kiya Homa?</td><td>あなたはみかんを食べるか？</td></tr>
+        <tr><td class="dim">34</td><td style="font-family:var(--mono);font-size:12px;">Ma, Mi Homa Kiya</td><td>はい、私はみかんを食べます。</td></tr>
+        <tr><td class="dim">35</td><td style="font-family:var(--mono);font-size:12px;">Hi Muhu so se kiya Homa?</td><td>あなたはみかんを食べないのですか？</td></tr>
+        <tr><td class="dim">36</td><td style="font-family:var(--mono);font-size:12px;">Ma, Mi So se kiya Homa</td><td>ええ、私はみかんを食べません。</td></tr>
+        <tr><td class="dim">37</td><td style="font-family:var(--mono);font-size:12px;">Hi Homa mi se kiyo me, Muhu pa?</td><td>あなたはみかんを食べたかった。ですよね？</td></tr>
+        <tr><td class="dim">38</td><td style="font-family:var(--mono);font-size:12px;">So, Mi So mi se kiya Homa</td><td>いいえ、私はみかんを食べたくはありません。</td></tr>
+        <tr><td class="dim">39</td><td style="font-family:var(--mono);font-size:12px;">Hi Muhu so se kiya Hema Homa?</td><td>あなたはりんごもみかんも食べないのですか？</td></tr>
+        <tr><td class="dim">40</td><td style="font-family:var(--mono);font-size:12px;">So, Mi Kiya Hema</td><td>いや、私はりんごを食べます。</td></tr>
+        <tr><td class="dim">41</td><td style="font-family:var(--mono);font-size:12px;">Mi So se kiya Homa. Yate, So se kiwya Homa</td><td>私はみかんを食べない。だから、みかんは食べられない。</td></tr>
+        <tr><td class="dim">42</td><td style="font-family:var(--mono);font-size:12px;">So se kiwya Hema. Yate, Somapa Hema</td><td>りんごは食べることができない。なぜなら、りんごは綺麗ではないから。</td></tr>
+        <tr><td class="dim">43</td><td style="font-family:var(--mono);font-size:12px;">Nipa Hema. Yahute, Mapa Homa</td><td>りんごは汚い。一方で、みかんは綺麗だ。</td></tr>
+        <tr><td class="dim">44</td><td style="font-family:var(--mono);font-size:12px;">Muhu mi se kiya Homa?</td><td>みかんを食べましょうよ？</td></tr>
+        <tr><td class="dim">45</td><td style="font-family:var(--mono);font-size:12px;">So, So se kiya</td><td>いいえ、お断りします。</td></tr>
+        <tr><td class="dim">46</td><td style="font-family:var(--mono);font-size:12px;">Yute kiyo Homa. So se kiyo Hema</td><td>あそこでみかんを食べろ。りんごは食べるな。</td></tr>
+        <tr><td class="dim">47</td><td style="font-family:var(--mono);font-size:12px;">Muhu se kiwya Hema? Haya Homa</td><td>りんごを頂いても宜しいですか？みかんは差し上げます。</td></tr>
+        <tr><td class="dim">48</td><td style="font-family:var(--mono);font-size:12px;">Mi Kimayo "So se kiyo Hema, Kiyo Homa"a</td><td>私は「りんごは食べるな、みかんを食べろ」と言った。</td></tr>
+        <tr><td class="dim">49</td><td style="font-family:var(--mono);font-size:12px;">Hi Hema kiyome Muhu se kimayo?</td><td>あなたはりんごを食べろと言うのですか？</td></tr>
+        <tr><td class="dim">50</td><td style="font-family:var(--mono);font-size:12px;">Sesosehi Mi se kiyame Kimayo</td><td>貴様はりんごを食べたいと言った。</td></tr>
+        <tr><td class="dim">51</td><td style="font-family:var(--mono);font-size:12px;">Mi Sopa Mi se hema kiyame kimayo mea</td><td>私はりんごを食べたいと言った覚えがない。</td></tr>
+        <tr><td class="dim">52</td><td style="font-family:var(--mono);font-size:12px;">Hi Muhu se "Mi Hema Mi se kiya"a Kimayo</td><td>あなたは確か「私はりんごを食べたい」と言ったはずだ。</td></tr>
+        <tr><td class="dim">53</td><td style="font-family:var(--mono);font-size:12px;">Mi Muhu se kimayo Mea</td><td>私はもしかしたらそう言ったかもしれない。</td></tr>
+        <tr><td class="dim">54</td><td style="font-family:var(--mono);font-size:12px;">Hi Mapa se kimayo "Mi se kiya Hema"a</td><td>あなたは絶対に私に対して「りんごを食べたい」と言った。</td></tr>
+        <tr><td class="dim">55</td><td style="font-family:var(--mono);font-size:12px;">Hi Kiwya Hema Mia</td><td>彼は私にりんごを食べさせる。</td></tr>
+        <tr><td class="dim">56</td><td style="font-family:var(--mono);font-size:12px;">Mia So se Kiwya Homai</td><td>みかんは私に食べられていない。</td></tr>
+        <tr><td class="dim">57</td><td style="font-family:var(--mono);font-size:12px;">Hia se kiwya Hemai Mia</td><td>りんごは彼によって私に食べさせられた。</td></tr>
+        <tr><td class="dim">58</td><td style="font-family:var(--mono);font-size:12px;">Yate Mase sopa</td><td>ここには何もない。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="#" data-page="p4">← #4 教材：食事</a>
+    <a class="nav-btn" href="#" data-page="p6">単語帳 →</a>
   </div>
 </section>
 
 <!-- 単語帳 -->
-<section class="page" id="p5">
+<section class="page" id="p6">
   <div class="chapter-label">単語帳</div>
   <div class="page-title">単語帳</div>
-  <p class="prose">89語の全単語一覧。品詞でフィルタリングできる。</p>
+  <p class="prose">112語の全単語一覧。品詞でフィルタリングできる。</p>
   <div class="wb-filters" id="wb-filters"></div>
   <div class="tbl-wrap">
     <table class="tbl" id="wb-table">
@@ -542,7 +652,7 @@ body.sidebar-open .sidebar-overlay { display: block; }
 <tr><td class="dim" style="text-align:right;padding-right:8px;">27</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Tetaa ya</td><td>書く</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
 <tr><td class="dim" style="text-align:right;padding-right:8px;">28</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Soya</td><td>消す</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
 <tr><td class="dim" style="text-align:right;padding-right:8px;">29</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Soya sa</td><td>消しゴム</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
-<tr><td class="dim" style="text-align:right;padding-right:8px;">30</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Mapa</td><td>ある</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">30</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Mapa</td><td>完全、完璧</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
 <tr><td class="dim" style="text-align:right;padding-right:8px;">31</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sopa</td><td>ない</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
 <tr><td class="dim" style="text-align:right;padding-right:8px;">32</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Tesa</td><td>定規</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
 <tr><td class="dim" style="text-align:right;padding-right:8px;">33</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sinea</td><td>ポーチ、ケース</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
@@ -599,15 +709,38 @@ body.sidebar-open .sidebar-overlay { display: block; }
 <tr><td class="dim" style="text-align:right;padding-right:8px;">84</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ki wya</td><td>食べる</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
 <tr><td class="dim" style="text-align:right;padding-right:8px;">85</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Ki ya</td><td>吐く</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
 <tr><td class="dim" style="text-align:right;padding-right:8px;">86</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Kina wya</td><td>飲む</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
-<tr><td class="dim" style="text-align:right;padding-right:8px;">87</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">—（友達）</td><td>友達</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">—</span></td></tr>
-<tr><td class="dim" style="text-align:right;padding-right:8px;">88</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">—（子供）</td><td>子供</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">—</span></td></tr>
-<tr><td class="dim" style="text-align:right;padding-right:8px;">89</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">—（大人）</td><td>大人</td><td><span class="badge b-gray" style="font-size:11px;padding:2px 7px;">—</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">87</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Hema</td><td>りんご</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">88</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Homa</td><td>みかん</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">89</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Tea</td><td>床</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">90</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Su</td><td>テーブル</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">91</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Mimu</td><td>妻</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">92</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Muhi</td><td>彼女</td><td><span class="badge b-amber" style="font-size:11px;padding:2px 7px;">名詞（主語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">93</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Muhuta</td><td>誰か</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">94</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Poyoa</td><td>昨日・過去の時間</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">95</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Poyua</td><td>明日・未来の時間</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">96</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Poma</td><td>毎日</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">97</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Pome</td><td>〜分（時間単位）</td><td><span class="badge b-green" style="font-size:11px;padding:2px 7px;">名詞（目的語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">98</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Mapoya</td><td>常に</td><td><span class="badge b-coral" style="font-size:11px;padding:2px 7px;">修飾詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">99</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Kapa</td><td>ある（存在）</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">100</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sokapa</td><td>ない（存在否定）</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">101</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yate</td><td>この / ここ / だから（接続）</td><td><span class="badge b-coral" style="font-size:11px;padding:2px 7px;">修飾詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">102</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yute</td><td>その / あそこ</td><td><span class="badge b-coral" style="font-size:11px;padding:2px 7px;">修飾詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">103</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yote</td><td>あの</td><td><span class="badge b-coral" style="font-size:11px;padding:2px 7px;">修飾詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">104</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Yahute</td><td>一方で（接続）</td><td><span class="badge b-coral" style="font-size:11px;padding:2px 7px;">修飾詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">105</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Nipa</td><td>汚い</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">106</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Kimayo</td><td>言った</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">107</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sukaya</td><td>買う</td><td><span class="badge b-blue" style="font-size:11px;padding:2px 7px;">動詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">108</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Maahu</td><td>について（トピック焦点）</td><td><span class="badge b-coral" style="font-size:11px;padding:2px 7px;">修飾詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">109</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Tahu</td><td>一つ</td><td><span class="badge b-coral" style="font-size:11px;padding:2px 7px;">修飾詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">110</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Sesosehi</td><td>貴様</td><td><span class="badge b-amber" style="font-size:11px;padding:2px 7px;">名詞（主語）</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">111</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Mase</td><td>何も</td><td><span class="badge b-coral" style="font-size:11px;padding:2px 7px;">修飾詞</span></td></tr>
+<tr><td class="dim" style="text-align:right;padding-right:8px;">112</td><td style="font-family:var(--mono);font-size:13px;font-weight:500;">Somapa</td><td>綺麗ではない</td><td><span class="badge b-pink" style="font-size:11px;padding:2px 7px;">形容詞</span></td></tr>
 </tbody>
     </table>
   </div>
-  <p class="dim" id="wb-count">89語</p>
+  <p class="dim" id="wb-count">112語</p>
   <div class="nav-footer">
-    <a class="nav-btn" href="#" data-page="p4">← #4 教材：食事</a>
+    <a class="nav-btn" href="#" data-page="p5">← #5 りんご58文</a>
     <a class="nav-btn" href="#" data-page="cover">↑ 目次</a>
   </div>
 </section>
@@ -660,7 +793,7 @@ function showPage(id) {
   const target = document.getElementById(id);
   if (target) target.classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const map = {cover:0,p1:1,p2:2,p3:3,p4:4,p5:5};
+  const map = {cover:0,p1:1,p2:2,p3:3,p4:4,p5:5,p6:6};
   const idx = map[id];
   if (idx !== undefined) {
     const navItems = document.querySelectorAll('.nav-item');
@@ -730,7 +863,8 @@ renderList('cons-list', cons);
 renderStats();
 
 // Wordbook filter
-const WB_POS = ["すべて","動詞","形容詞","名詞（主語）","名詞（目的語）","名詞（固有）","修飾詞","—"];
+const WB_POS = ["すべて","動詞","形容詞","名詞（主語）","名詞（目的語）","名詞（固有）","修飾詞","りんご58文"];
+const RINGO_WORDS = ["Hema","Homa","Tea","Su","Mimu","Muhi","Muhuta","Poyoa","Poyua","Poma","Pome","Mapoya","Kapa","Sokapa","Yate","Yute","Yote","Yahute","Nipa","Kimayo","Sukaya","Maahu","Tahu","Sesosehi","Mase","Somapa","Mi","Hi","Ma","So"];
 function wbBuildFilters() {
   const wrap = document.getElementById('wb-filters');
   if (!wrap) return;
@@ -745,7 +879,15 @@ function wbBuildFilters() {
       document.querySelectorAll('#wb-tbody tr').forEach(tr => {
         const sp = tr.querySelector('td:last-child span');
         const rp = sp ? sp.textContent.trim() : '—';
-        const show = pos === 'すべて' || rp === pos;
+        const word = tr.querySelector('td:nth-child(2)') ? tr.querySelector('td:nth-child(2)').textContent.trim() : '';
+        let show = false;
+        if (pos === 'すべて') {
+          show = true;
+        } else if (pos === 'りんご58文') {
+          show = RINGO_WORDS.some(w => word === w || word.startsWith(w + ' ') || word.startsWith(w));
+        } else {
+          show = rp === pos;
+        }
         tr.classList.toggle('hidden', !show);
         if (show) count++;
       });
