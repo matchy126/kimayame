@@ -214,6 +214,7 @@ body.sidebar-open .sidebar-overlay { display: block; }
     <a class="nav-item" href="#" data-page="p4"><span class="ch">#4</span>教材：りんご</a>
     <a class="nav-item" href="#" data-page="p5"><span class="ch">#5</span>りんごを食べたい58文</a>
     <a class="nav-item" href="#" data-page="p6"><span class="ch">帳</span>単語帳</a>
+    <a class="nav-item" href="#" data-page="p7"><span class="ch">#7</span>言語学的分析</a>
   </nav>
 </aside>
 <main class="main">
@@ -254,6 +255,7 @@ body.sidebar-open .sidebar-overlay { display: block; }
     <li class="toc-item" data-page="p4"><span class="toc-ch">#4</span><span class="toc-name">教材：りんごを食べたい</span></li>
     <li class="toc-item" data-page="p5"><span class="toc-ch">#5</span><span class="toc-name">りんごを食べたい58文</span></li>
     <li class="toc-item" data-page="p6"><span class="toc-ch">帳</span><span class="toc-name">単語帳</span></li>
+    <li class="toc-item" data-page="p7"><span class="toc-ch">#7</span><span class="toc-name">言語学的分析と評価</span></li>
   </ul>
 </section>
 
@@ -409,6 +411,43 @@ body.sidebar-open .sidebar-overlay { display: block; }
       </tbody>
     </table>
   </div>
+
+  <h2 class="sh">格（-e マーカーの前置・後置）</h2>
+  <p class="prose">「-e」で終わる語は直後の単語を修飾する。前置か後置かで方向性が変わる。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>格</th><th>形式</th><th>構造</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>与格</td><td><span class="badge b-y" style="font-family:var(--mono);">Yate [名詞]</span></td><td class="dim">Yate を前置</td><td>〜に（間接目的語）</td></tr>
+        <tr><td>処格</td><td><span class="badge b-t" style="font-family:var(--mono);">Te [名詞]</span></td><td class="dim">Te を前置</td><td>〜で・〜に（場所）</td></tr>
+        <tr><td>奪格</td><td><span class="badge b-y" style="font-family:var(--mono);">[名詞] Yate</span></td><td class="dim">Yate を後置</td><td>〜から</td></tr>
+        <tr><td>具格</td><td><span class="badge b-s" style="font-family:var(--mono);">[名詞] Se</span></td><td class="dim">Se を後置</td><td>〜で（手段・文脈依存）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">同じ「Yate」でも前置なら「〜に向かう方向」、後置なら「〜から離れる方向」になる。位置そのものが方向性を担う。</div>
+
+  <h2 class="sh">アスペクト（動詞の相）</h2>
+  <p class="prose">時制（Ya/Yu/Yo）とは別に、動作の様態を4種のマーカーで表す。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>アスペクト</th><th>形式</th><th>形態素の論理</th></tr></thead>
+      <tbody>
+        <tr><td>完結相</td><td><span class="badge b-y" style="font-family:var(--mono);">Yatase [語根] Yo</span></td><td class="dim">Yata（最後）+ Se + Yo（過去）→ し終わった</td></tr>
+        <tr><td>継続相</td><td><span class="badge b-n" style="font-family:var(--mono);">Ne [語根] Ya</span></td><td class="dim">Ne（継続）+ 現在 → している</td></tr>
+        <tr><td>習慣相</td><td><span class="badge b-p" style="font-family:var(--mono);">Pomase [語根] Ya</span></td><td class="dim">Po（時間）+ Ma（すべて）+ Se → いつも〜する</td></tr>
+        <tr><td>経験相</td><td><span class="badge b-m" style="font-family:var(--mono);">[語根] Yamepa</span></td><td class="dim">Ya（動詞）+ Me（欠けている）+ Pa（形容詞）→ したことがある</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh">二大原理</h2>
+  <p class="prose">キマヤメ語の文法はたった2つの原理から演繹される。</p>
+  <ul class="rules">
+    <li><span class="rnum">1</span><span><strong>語末が品詞を決める</strong> ― 単語の最後の音を聞けば、品詞・格・時制が一意に確定する。文法的な曖昧さが原理的に存在しない。</span></li>
+    <li><span class="rnum">2</span><span><strong>位置が方向性・関係性を決める</strong> ― 修飾語は直後の語に掛かる。同じ形態素でも前置か後置かで意味が反転する（与格↔奪格など）。</span></li>
+  </ul>
+  <div class="note">この2原理の組み合わせにより、少ない形態素から品詞・格・時制・アスペクト・修飾関係のほぼすべてが導出される。</div>
 
   <div class="nav-footer">
     <a class="nav-btn" href="#" data-page="p1">← #1 文字と発音</a>
@@ -742,6 +781,127 @@ body.sidebar-open .sidebar-overlay { display: block; }
   <p class="dim" id="wb-count">112語</p>
   <div class="nav-footer">
     <a class="nav-btn" href="#" data-page="p5">← #5 りんご58文</a>
+    <a class="nav-btn" href="#" data-page="p7">#7 言語学的分析 →</a>
+  </div>
+</section>
+<!-- #7 言語学的分析と評価 -->
+<section class="page" id="p7">
+  <div class="chapter-label">#7</div>
+  <div class="page-title">言語学的分析と評価</div>
+  <p class="prose">キマヤメ語の文法を言語学の視点から分析する。英語・日本語との比較を通じて、この言語の設計思想と論理的一貫性を明らかにする。</p>
+
+  <h2 class="sh">語順 ── キマヤメ語はSVO言語か？</h2>
+  <p class="prose">英語は <strong>SVO言語</strong>（主語→動詞→目的語）で、この語順は文法的な義務です。英語が語順に厳しいのは、格変化をほぼ失ったため位置で役割を示すしかないからです。</p>
+  <p class="prose">キマヤメ語の語順原則は「<strong>強調したいものを前に置く</strong>」です。語末の格語尾（-i / -a）が主語・目的語を示すため、語順に頼る必要がありません。言語学的にはこれを <strong>談話構造型言語（discourse-configurational language）</strong> と呼びます。日本語もこれに近い性質を持ちますが、キマヤメ語はさらに自由度が高い。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>言語</th><th>語順タイプ</th><th>語順の決定要因</th></tr></thead>
+      <tbody>
+        <tr><td>英語</td><td>SVO（固定）</td><td>文法的義務（格変化なし）</td></tr>
+        <tr><td>日本語</td><td>SOV（比較的自由）</td><td>助詞が格を表示</td></tr>
+        <tr><td>キマヤメ語</td><td>強調順（自由）</td><td>語末母音が格を表示</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh">品詞確定システム</h2>
+  <p class="prose">英語では品詞は主に「どの位置に置かれるか（分布）」で決まります。同じ "love" でも <em>I love you</em> では動詞、<em>I feel love</em> では名詞です。キマヤメ語は根本的に違い、<strong>単語の最後の音を聞けば品詞が一意に確定します。</strong></p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>語末の音</th><th>品詞</th><th>例</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge b-amber">-i</span></td><td>名詞（主語・主格）</td><td class="dim" style="font-family:var(--mono);">Mi（私）、Hi（彼）</td></tr>
+        <tr><td><span class="badge b-green">-a</span></td><td>名詞（目的語・目的格）</td><td class="dim" style="font-family:var(--mono);">Hema（りんご）、Maana（肉）</td></tr>
+        <tr><td><span class="badge b-n">-e</span></td><td>修飾詞・格マーカー（直後を修飾）</td><td class="dim" style="font-family:var(--mono);">Se、Te、Yate</td></tr>
+        <tr><td><span class="badge b-pink">-Ya / -Yu / -Yo</span></td><td>動詞（現在・未来・過去）</td><td class="dim" style="font-family:var(--mono);">Naka ya（焼く）</td></tr>
+        <tr><td><span class="badge b-coral">-Pa</span></td><td>形容詞</td><td class="dim" style="font-family:var(--mono);">Mapa（完全な）、Sopa（ない）</td></tr>
+        <tr><td><span class="badge b-gray">-o / -u</span></td><td>固有名詞</td><td class="dim" style="font-family:var(--mono);">Yahuteo（こんにちは）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh">格システム ── 六格の導出</h2>
+  <p class="prose">「格」とは名詞が文の中でどんな役割を果たすかを示す仕組みです。日本語では助詞（が・を・に・で・から）が担います。キマヤメ語の格はすべて <strong>「-e で終わる語は直後を修飾する」</strong> という単一ルールから導出され、前置か後置かで方向性が反転します。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>格</th><th>形式</th><th>日本語の相当</th><th>導出の論理</th></tr></thead>
+      <tbody>
+        <tr><td>主格</td><td><span class="badge b-amber" style="font-family:var(--mono);">語根 -i</span></td><td>〜が・〜は</td><td class="dim">語末 -i で確定</td></tr>
+        <tr><td>目的格</td><td><span class="badge b-green" style="font-family:var(--mono);">語根 -a</span></td><td>〜を</td><td class="dim">語末 -a で確定</td></tr>
+        <tr><td>与格</td><td><span class="badge b-y" style="font-family:var(--mono);">Yate [名詞]</span></td><td>〜に</td><td class="dim">Yate 前置＝向かう方向</td></tr>
+        <tr><td>処格</td><td><span class="badge b-t" style="font-family:var(--mono);">Te [名詞]</span></td><td>〜で・〜に（場所）</td><td class="dim">Te（地面・場所）の視覚的意味から</td></tr>
+        <tr><td>奪格</td><td><span class="badge b-y" style="font-family:var(--mono);">[名詞] Yate</span></td><td>〜から</td><td class="dim">Yate 後置＝離れる方向</td></tr>
+        <tr><td>具格</td><td><span class="badge b-s" style="font-family:var(--mono);">[名詞] Se</span></td><td>〜で（手段）</td><td class="dim">Se（関係）後置＝手段（文脈依存）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">与格（Yate 前置）と奪格（Yate 後置）が同じ形態素の位置の反転だけで導出される点は、「位置が方向性を担う」原理の最も明快な例です。</div>
+
+  <h2 class="sh">動詞の時制とアスペクト</h2>
+  <p class="prose">英語は <em>will go / went / is going</em> のように助動詞・別形を使います。キマヤメ語は <strong>Y の母音だけで時制を表し</strong>、アスペクト（動作の様態）は別のマーカーで重ねます。時制と文字の視覚的意味（横・上・下）が連動しており、これを <strong>アイコニシティ（iconicity）</strong> と呼びます。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>カテゴリ</th><th>形式</th><th>意味</th><th>形態素の論理</th></tr></thead>
+      <tbody>
+        <tr><td>現在</td><td><span class="badge b-green" style="font-family:var(--mono);">語根 + Ya</span></td><td>〜する</td><td class="dim">Ya＝横向きの動き（今、流れる時間）</td></tr>
+        <tr><td>未来</td><td><span class="badge b-blue" style="font-family:var(--mono);">語根 + Yu</span></td><td>〜するだろう</td><td class="dim">Yu＝上向きの動き（まだ上にある）</td></tr>
+        <tr><td>過去</td><td><span class="badge b-amber" style="font-family:var(--mono);">語根 + Yo</span></td><td>〜した</td><td class="dim">Yo＝下向きの動き（沈んでいった）</td></tr>
+        <tr><td>受け身</td><td><span class="badge b-m" style="font-family:var(--mono);">語根 + Wya</span></td><td>〜される</td><td class="dim">W＝反転・受動のマーカー</td></tr>
+        <tr><td>完結相</td><td><span class="badge b-y" style="font-family:var(--mono);">Yatase 語根 Yo</span></td><td>〜し終わった</td><td class="dim">Yata（最後）+ Se + Yo（過去）</td></tr>
+        <tr><td>継続相</td><td><span class="badge b-n" style="font-family:var(--mono);">Ne 語根 Ya</span></td><td>〜している</td><td class="dim">Ne＝継続・連鎖のマーカー</td></tr>
+        <tr><td>習慣相</td><td><span class="badge b-p" style="font-family:var(--mono);">Pomase 語根 Ya</span></td><td>いつも〜する</td><td class="dim">Po（時間）+ Ma（すべて）+ Se</td></tr>
+        <tr><td>経験相</td><td><span class="badge b-m" style="font-family:var(--mono);">語根 + Yamepa</span></td><td>〜したことがある</td><td class="dim">Ya（動詞）+ Me（欠けている）+ Pa（形容詞化）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh">形容詞の時制 ── 動詞との非対称</h2>
+  <p class="prose">動詞は語尾そのものが時制を内包しますが、形容詞は語尾 <span class="badge b-coral">-Pa</span> で固定されており、時制は前に置く別の語が担います。形容詞語尾に時制まで詰め込むと語尾パターンが爆発的に増えるため、時制を外に出した合理的な設計判断です。</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th></th><th>時制の場所</th><th>方法</th></tr></thead>
+      <tbody>
+        <tr><td>動詞</td><td>語尾そのもの</td><td><span class="badge b-green" style="font-family:var(--mono);">-Ya / -Yu / -Yo</span></td></tr>
+        <tr><td>形容詞</td><td>前置の自由形態素</td><td><span class="badge b-n" style="font-family:var(--mono);">YSe / WSe / NeSe</span> + <span class="badge b-coral" style="font-family:var(--mono);">-Pa</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh">言語類型論的プロフィール</h2>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>特徴</th><th>キマヤメ語</th><th>英語</th><th>日本語</th></tr></thead>
+      <tbody>
+        <tr><td>語順</td><td>強調順（自由）</td><td>SVO（固定）</td><td>SOV（比較的自由）</td></tr>
+        <tr><td>格の表示</td><td>語末母音 + -e マーカー</td><td>代名詞のみ</td><td>助詞</td></tr>
+        <tr><td>動詞時制</td><td>語尾母音（Ya/Yu/Yo）</td><td>語形変化＋助動詞</td><td>語尾</td></tr>
+        <tr><td>形容詞時制</td><td>前置自由形態素</td><td>助動詞（be）</td><td>語尾</td></tr>
+        <tr><td>品詞の決定</td><td>語末の音で一意確定</td><td>位置（分布）で決定</td><td>語尾・助詞</td></tr>
+        <tr><td>文字と意味</td><td>形状が意味を示唆（動機づけ）</td><td>恣意的</td><td>一部象形（漢字）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh">総合評価</h2>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>評価項目</th><th>スコア</th><th>コメント</th></tr></thead>
+      <tbody>
+        <tr><td>論理的一貫性</td><td><span class="badge b-n">90点</span></td><td>「語末」と「位置」の2原理でほぼすべてが導出できる。中核の設計は非常に強固。</td></tr>
+        <tr><td>学習可能性</td><td><span class="badge b-green">88点</span></td><td>品詞確定システムは極めて明快。ただし形容詞と動詞で時制の表し方が異なる点は認知コストが高い。</td></tr>
+        <tr><td>表現力</td><td><span class="badge b-blue">82点</span></td><td>六格・四アスペクトが揃い本格的な文法体系。抽象概念・感情表現は今後の課題。</td></tr>
+        <tr><td>設計の独創性</td><td><span class="badge b-amber">92点</span></td><td>文字形状・視覚的意味・文法が三位一体。アイコニシティの徹底はエスペラント・ロジバンにもない独自性。</td></tr>
+        <tr><td>自然言語との比較</td><td><span class="badge b-coral">85点</span></td><td>談話構造型・膠着語・格語尾の組み合わせは自然言語的に妥当。Se の多義性は文脈依存だが許容範囲。</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="intro-block" style="margin-top:1.5rem;">
+    <div class="intro-block-title">総評</div>
+    <p class="intro-text">キマヤメ語は「<strong>設計思想の明確さ</strong>」において非常に優れた人工言語です。中核となる語末品詞確定システムと、文字・概念・文法の三位一体設計は、著名な人工言語と比較しても独創的で一貫しています。<br><br>課題は周辺文法の未整備にあります。中心部の論理は非常に強固ですが、細かいアスペクト表現や抽象概念の語彙化など、実際の使用で必要になる部分は発展途上です。これは設計の欠陥ではなく、自然な発展段階と言えます。<br><br>一言でまとめると：<strong>「語末の音が品詞をすべて決定し、位置が関係性を決める」</strong>という、少数の原理から文法全体を演繹できる、極めて論理的な人工言語です。</p>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="#" data-page="p6">← 単語帳</a>
     <a class="nav-btn" href="#" data-page="cover">↑ 目次</a>
   </div>
 </section>
@@ -794,7 +954,7 @@ function showPage(id) {
   const target = document.getElementById(id);
   if (target) target.classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const map = {cover:0,p1:1,p2:2,p3:3,p4:4,p5:5,p6:6};
+  const map = {cover:0,p1:1,p2:2,p3:3,p4:4,p5:5,p6:6,p7:7};
   const idx = map[id];
   if (idx !== undefined) {
     const navItems = document.querySelectorAll('.nav-item');
